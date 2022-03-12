@@ -14,5 +14,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
 
+        setupEvent()
+        setValues()
+    }
+
+    fun setupEvent(){
+
+        binding.btnLogin.setOnClickListener {
+
+            val inputId = binding.edtId.text.toString()
+            val inputpw = binding.edtPassword.text.toString()
+
+//            keepthetime.xyz/로그인 기능에, 아이디 / 비번 보내기
+            
+
+        }
+
+
+    }
+
+    fun setValues(){
+
+
     }
 }
