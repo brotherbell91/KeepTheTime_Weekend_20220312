@@ -3,7 +3,11 @@ package com.example.keepthetime_weekend_20220312
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import com.example.keepthetime_weekend_20220312.api.APIList
+import com.example.keepthetime_weekend_20220312.api.ServerAPI
 import com.example.keepthetime_weekend_20220312.databinding.ActivityMainBinding
+import org.json.JSONObject
+import retrofit2.Callback
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,7 +30,11 @@ class MainActivity : AppCompatActivity() {
             val inputpw = binding.edtPassword.text.toString()
 
 //            keepthetime.xyz/로그인 기능에, 아이디 / 비번 보내기
-            
+
+            val myRetrofit = ServerAPI.getRetrofit()
+            val myApiList = myRetrofit.create( APIList::class.java)
+
+            myApiList.postRequestLogin(inputId, inputpw)
 
         }
 

@@ -12,7 +12,7 @@ import retrofit2.http.POST
 interface APIList {
 
 //    로그인 기능 : POST - /user
-   @FormUrlEncoded // POST / PUT / PATCH - formData(앱코드 : Field) 에 데이터 첨부시에 필요한 코드드
+   @FormUrlEncoded // POST / PUT / PATCH - formData(앱코드 : Field) 에 데이터 첨부시에 필요한 코드
    @POST("/user")
     fun postRequestLogin(
         @Field("email") id: String,
