@@ -49,6 +49,8 @@ class SignUpActivity : BaseActivity() {
                 }
             })
 
+            finish()
+
         }
     }
 
