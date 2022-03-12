@@ -24,5 +24,5 @@ abstract class BaseActivity : AppCompatActivity() {
 //    추상 함수 - 실행 내용이 없이 물려주자. => 자식이 상속받은 함수를 반드시 구현하게 의무 부여.
 
     abstract fun setupEvents()
-    abstract fun setValue()
+    abstract fun setValues()
 }
