@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.keepthetime_weekend_20220312.api.APIList
 import com.example.keepthetime_weekend_20220312.api.ServerAPI
 import com.example.keepthetime_weekend_20220312.databinding.ActivityMainBinding
+import com.example.keepthetime_weekend_20220312.datas.BasicResponse
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -38,13 +39,13 @@ class MainActivity : AppCompatActivity() {
             val myApiList = myRetrofit.create( APIList::class.java)
 
 //            callback 은 retrofit2로 , JSONObject 은 gooogle말고 다른것 선택
-            myApiList.postRequestLogin(inputId, inputpw).enqueue(object : Callback<JSONObject>{
-                override fun onResponse(call: Call<JSONObject>, response: Response<JSONObject>) {
+            myApiList.postRequestLogin(inputId, inputpw).enqueue(object : Callback<BasicResponse>{
+                override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
 //                    로그인 결과가 성공이던 / 실패던 응답 자체는 돌아온 경우.
                     Log.d("응답확인", response.toString())
                 }
 
-                override fun onFailure(call: Call<JSONObject>, t: Throwable) {
+                override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
 //                    아예 물리적으로 연결 실패
                 }
             }) //callback 은 retrofit2로 선택, json은 org.json
