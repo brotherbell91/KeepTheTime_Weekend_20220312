@@ -10,6 +10,7 @@ import com.example.keepthetime_weekend_20220312.api.APIList
 import com.example.keepthetime_weekend_20220312.api.ServerAPI
 import com.example.keepthetime_weekend_20220312.databinding.ActivityLoginBinding
 import com.example.keepthetime_weekend_20220312.datas.BasicResponse
+import com.example.keepthetime_weekend_20220312.utils.ContextUtil
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,14 +29,14 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setupEvents(){
-
+//      OnCheckedChange 중괄호 있는것 선택
         binding.autoLoginCheckBox.setOnCheckedChangeListener { compoundButton, isChecked ->
 
 //            isChecked변수에, 지금 체크 되었는지? 해제되었는지? 알려줌.
-//            Log.d("자동로그인", isChecked.toString())
-//            알려주는 값을, ContextUtil의 기능 활용해서 저장.
+//            Log.d("자동로그인", isChecked.toString()) //오류확인
+//            알려주는 Boleen 값을, ContextUtil의 기능 활용해서 저장.
 
-            ContextUtil.setAuto
+            ContextUtil.setAutoLogin(mContext, isChecked)
 
 
         }
