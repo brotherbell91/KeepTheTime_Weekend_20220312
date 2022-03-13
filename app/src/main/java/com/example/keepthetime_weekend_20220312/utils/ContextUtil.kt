@@ -13,6 +13,7 @@ class ContextUtil {
 
 //    저장할 항목의 이름. (조회할때도 같은 이름 사용)
         private val AUTO_LOGIN = "AUTO_LOGIN"
+        private val TOKEN = "TOKEN"
 
 //    해당 항목에 저장 기능 / 조회 기능
 
@@ -24,7 +25,6 @@ class ContextUtil {
             val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
 
             pref.edit().putBoolean(AUTO_LOGIN, isAutoLogin).apply()
-
 
         }
 
@@ -39,7 +39,23 @@ class ContextUtil {
 
         }
 
+//        TOKEN 항목에, String값을 저장 / 조회 기능
+//           - 메모장이름은 이미 만들어져 있다. 항목명은 x. setter / getter 도 x
 
+        fun setToken( context: Context, token : String) {
+
+            val pref = context.getSharedPreferences( prefName, Context.MODE_PRIVATE)
+
+            pref.edit().putString(TOKEN, token).apply()
+        }
+
+        fun getToken( context: Context) : String {
+
+            val pref = context.getSharedPreferences( prefName, Context.MODE_PRIVATE)
+
+            return pref.getString( TOKEN, "")!!
+
+        }
     }
 
 }
