@@ -21,10 +21,21 @@ class ContextUtil {
         fun setAutoLogin( context : Context, isAutoLogin : Boolean ){
 //            메모장 열땐 context 사용, isAutoLogin은 어떻게 할것인지?
 //            메모장을 열고, 변수에 메모장 자체를 담아두자.
-             val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+            val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
 
             pref.edit().putBoolean(AUTO_LOGIN, isAutoLogin).apply()
 
+
+        }
+
+//    조회 기능 : getter => 다른 클래스가 끌어다 사용.
+        fun getAutoLogin( context: Context ) : Boolean {
+
+//            메모장을 열고, 저장된 변수를 리턴하자.
+            val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+
+//            저장된 자동로그인 데이터가 없다면 내보내줄 기본값도 설정해야함.
+            return pref.getBoolean( AUTO_LOGIN, false )
 
         }
 
