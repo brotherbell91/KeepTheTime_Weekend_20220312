@@ -26,6 +26,11 @@ class SignUpActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+//        도전과제 : 닉네임 중복확인 기능 추가.
+//        1) 중복확인 버튼 배치 / 클릭시 이벤트 처리
+//        2)APIList 인터페이스에 함수 추가 필요x. (기존의 getRequestDuplicatedCheck 기능 재활용)
+//        3) 닉네임 중복 API 실행 (type-"NICK_NAME") / 응답처리
+
         binding.btnEmailCheck.setOnClickListener {
 
 //            입력된 이메일 추출 > 서버의 중복확인 기능에 물어보자.
@@ -59,6 +64,8 @@ class SignUpActivity : BaseActivity() {
                         val jsonObj = JSONObject( response.errorBody()!!.string())
 
                         val message = jsonObj.getString("message")
+
+                        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
                     }
                 }
 
