@@ -3,6 +3,7 @@ package com.example.keepthetime_weekend_20220312
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.keepthetime_weekend_20220312.api.APIList
@@ -52,7 +53,12 @@ class LoginActivity : BaseActivity() {
 
                         val br = response.body()!! //기본 분석 완료된 BasicResponse를 br변수에 담자.
 
-                        Toast.makeText(mContext, br.message, Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(mContext, br.message, Toast.LENGTH_SHORT).show()
+
+//                        data > token 변수 로그로 찍어보기
+                        Log.d("토큰", br.data.token)
+
+                        Toast.makeText(mContext, "${br.data.user.nick_name}님, 환영합니다!", Toast.LENGTH_SHORT).show()
 
                     }
                 }
