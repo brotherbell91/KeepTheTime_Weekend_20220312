@@ -21,5 +21,10 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+//        연습용 (임시 기능)
+//        로그인한 사람의 정보를 받아보자. (서버에서)
+//        닉네임을 추출해서 > 텍스트뷰에반영
+
     }
 }
