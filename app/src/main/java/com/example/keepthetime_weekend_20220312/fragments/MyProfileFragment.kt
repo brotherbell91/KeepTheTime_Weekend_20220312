@@ -1,9 +1,11 @@
 package com.example.keepthetime_weekend_20220312.fragments
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.keepthetime_weekend_20220312.R
@@ -39,6 +41,24 @@ class MyProfileFragment : BaseFragment() {
 
 
     override fun setupEvents() {
+
+        binding.btnLogout.setOnClickListener {
+
+//            정말 로그아웃 할건지 ? 확인받기
+//            안드로이드x로 선택
+            val alert = AlertDialog.Builder(mContext)
+                .setTitle("로그아웃")
+                .setMessage("정말 로그아웃 하시겠습니까?")
+                .setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
+
+//                    실제 로그아웃 처리
+
+                })
+                .setNegativeButton("취소", null)
+                .show()
+
+        }
+
     }
 
     override fun setValues() {
