@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.keepthetime_weekend_20220312.databinding.ActivitySignUpBinding
 import com.example.keepthetime_weekend_20220312.datas.BasicResponse
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -46,6 +47,18 @@ class SignUpActivity : BaseActivity() {
 
                         Toast.makeText(mContext, br.message, Toast.LENGTH_SHORT).show()
 
+                    }
+
+                    else {
+
+//                        응답은 돌아왔지만, 그 내용이 실패로 판정. => 중복이라 사용 안됨.
+
+//                        실패시에는, BasicResponse 자동 분석 기능 x, 별도로 JSONObject를 직접 다뤄야함.
+//                        에러의 경우 , errorBody()에 서버가 준 응답이 담겨있다. body() 아님.
+//                        string()으로 불러내야 String형태로 변환해줌.
+                        val jsonObj = JSONObject( response.errorBody()!!.string())
+
+                        val message = jsonObj.getString("message")
                     }
                 }
 
