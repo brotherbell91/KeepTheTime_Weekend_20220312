@@ -56,6 +56,7 @@ class MyProfileFragment : BaseFragment() {
                     
 //                    정보를 받아온 사용자의 프사 > Glide 활용 > 이미지뷰에 반영
                     Glide.with(mContext).load(br.data.user.profile_img).into( binding.imgProfile )
+                    binding.txtNickname.text = br.data.user.nick_name
                 }
             }
 
