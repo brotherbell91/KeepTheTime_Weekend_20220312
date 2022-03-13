@@ -6,5 +6,6 @@ class UserData(
     val email : String,
     val ready_minute : Int,
     val nick_name : String,
+    val profile_img : String,
 ) {
 }
