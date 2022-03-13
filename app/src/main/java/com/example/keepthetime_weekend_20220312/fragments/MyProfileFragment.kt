@@ -1,6 +1,7 @@
 package com.example.keepthetime_weekend_20220312.fragments
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.keepthetime_weekend_20220312.R
+import com.example.keepthetime_weekend_20220312.SplashActivity
 import com.example.keepthetime_weekend_20220312.databinding.FragmentMyProfileBinding
 import com.example.keepthetime_weekend_20220312.datas.BasicResponse
 import com.example.keepthetime_weekend_20220312.utils.ContextUtil
@@ -52,6 +54,20 @@ class MyProfileFragment : BaseFragment() {
                 .setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
 
 //                    실제 로그아웃 처리
+//                    로그아웃 : 저장되어있던 토큰값을 삭제. => 서버에 내가 누군지 알려주려면, 다시 로그인이 필요해짐.
+//                    토큰값을 새로 받아와야하니까.
+
+//                    토큰값 삭제 : 저장된 토큰값을 ""으로 세팅.
+
+                    ContextUtil.setToken(mContext,"")
+
+//                    화면종료 > 로딩화면으로 보내기.
+
+                    val myIntent = Intent(mContext, SplashActivity::class.java)
+                    startActivity(myIntent)
+
+//                    임시코드 requireActivity() 는 myProfileFragment를 들고있는 화면
+                    requireActivity().finish()
 
                 })
                 .setNegativeButton("취소", null)
