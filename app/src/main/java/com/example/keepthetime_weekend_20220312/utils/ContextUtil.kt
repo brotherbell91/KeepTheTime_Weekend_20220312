@@ -10,22 +10,25 @@ class ContextUtil {
 
 //    일종의 메모장 파일 이름. -> 다른 클래스가 볼 필요x
         private val prefName = "KeepTheTimePref"
-    }
 
 //    저장할 항목의 이름. (조회할때도 같은 이름 사용)
-    private val AUTO_LOGIN = "AUTO_LOGIN"
+        private val AUTO_LOGIN = "AUTO_LOGIN"
 
 //    해당 항목에 저장 기능 / 조회 기능
 
-//    저장 기능 : setter => 다른 클래스가 끌어다 사용.
+//    저장 기능을 setter라고함  => 다른 클래스가 끌어다 사용.
 
-    fun setAutoLogin( context : Context, isAutoLogin : Boolean ){
+        fun setAutoLogin( context : Context, isAutoLogin : Boolean ){
+//            메모장 열땐 context 사용, isAutoLogin은 어떻게 할것인지?
+//            메모장을 열고, 변수에 메모장 자체를 담아두자.
+             val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
 
-//        메모장을 열고, 변수에 메모장 자체를 담아두자.
-        val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+            pref.edit().putBoolean(AUTO_LOGIN, isAutoLogin).apply()
 
-        pref.edit().putBoolean(AUTO_LOGIN, isAutoLogin).apply()
+
+        }
 
 
     }
+
 }

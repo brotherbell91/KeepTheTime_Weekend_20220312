@@ -29,6 +29,18 @@ class LoginActivity : BaseActivity() {
 
     override fun setupEvents(){
 
+        binding.autoLoginCheckBox.setOnCheckedChangeListener { compoundButton, isChecked ->
+
+//            isChecked변수에, 지금 체크 되었는지? 해제되었는지? 알려줌.
+//            Log.d("자동로그인", isChecked.toString())
+//            알려주는 값을, ContextUtil의 기능 활용해서 저장.
+
+            ContextUtil.setAuto
+
+
+        }
+
+
         binding.btnSignup.setOnClickListener {
 
             val myIntent = Intent(this,SignUpActivity::class.java)
