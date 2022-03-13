@@ -3,26 +3,24 @@ package com.example.keepthetime_weekend_20220312
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.keepthetime_weekend_20220312.api.APIList
 import com.example.keepthetime_weekend_20220312.api.ServerAPI
-import com.example.keepthetime_weekend_20220312.databinding.ActivityMainBinding
+import com.example.keepthetime_weekend_20220312.databinding.ActivityLoginBinding
 import com.example.keepthetime_weekend_20220312.datas.BasicResponse
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
 //    binding : 어떤 xml을 접근하는지. 자료형으로 설정.
-    lateinit var binding : ActivityMainBinding
+    lateinit var binding : ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_login)
 
         setupEvent()
         setValues()
@@ -57,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 
                         val br = response.body()!! //기본 분석 완료된 BasicResponse를 br변수에 담자.
 
-                        Toast.makeText(this@MainActivity, br.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity, br.message, Toast.LENGTH_SHORT).show()
 
                     }
                 }
