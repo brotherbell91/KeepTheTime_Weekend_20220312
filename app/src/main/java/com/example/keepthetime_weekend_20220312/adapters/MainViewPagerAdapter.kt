@@ -17,4 +17,14 @@ class MainViewPagerAdapter( fm : FragmentManager) : FragmentPagerAdapter( fm ) {
 
         }
     }
+
+    override fun getPageTitle(position: Int): CharSequence? {
+
+        return when(position){
+
+            0 -> "약속 목록"
+            else -> "내 프리필"
+
+        }
+    }
 }
