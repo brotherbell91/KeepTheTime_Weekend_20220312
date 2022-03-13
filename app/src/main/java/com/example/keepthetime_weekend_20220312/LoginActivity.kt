@@ -13,7 +13,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
 //    binding : 어떤 xml을 접근하는지. 자료형으로 설정.
     lateinit var binding : ActivityLoginBinding
@@ -22,11 +22,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_login)
 
-        setupEvent()
+        setupEvents()
         setValues()
     }
 
-    fun setupEvent(){
+    override fun setupEvents(){
 
         binding.btnSignup.setOnClickListener {
 
@@ -42,11 +42,8 @@ class LoginActivity : AppCompatActivity() {
 
 //            keepthetime.xyz/로그인 기능에, 아이디 / 비번 보내기
 
-            val myRetrofit = ServerAPI.getRetrofit()
-            val myApiList = myRetrofit.create( APIList::class.java)
-
 //            callback 은 retrofit2로 , JSONObject 은 gooogle말고 다른것 선택
-            myApiList.postRequestLogin(inputId, inputpw).enqueue(object : Callback<BasicResponse>{
+            apiList.postRequestLogin(inputId, inputpw).enqueue(object : Callback<BasicResponse>{
                 override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
 //                    로그인 결과가 성공이던 / 실패던 응답 자체는 돌아온 경우.
 
@@ -55,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
 
                         val br = response.body()!! //기본 분석 완료된 BasicResponse를 br변수에 담자.
 
-                        Toast.makeText(this@LoginActivity, br.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(mContext, br.message, Toast.LENGTH_SHORT).show()
 
                     }
                 }
@@ -70,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    fun setValues(){
+    override fun setValues(){
 
 
     }
