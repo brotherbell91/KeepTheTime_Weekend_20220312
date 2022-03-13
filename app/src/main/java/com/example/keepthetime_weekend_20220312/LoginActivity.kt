@@ -70,6 +70,9 @@ class LoginActivity : BaseActivity() {
 //                        data > token 변수 로그로 찍어보기
                         Log.d("토큰", br.data.token)
 
+//                        받아온 토큰값을 기기에 저장 => 나중에 많은 화면에서 활용.
+                        ContextUtil.setToken(mContext, br.data.token)
+
                         Toast.makeText(mContext, "${br.data.user.nick_name}님, 환영합니다!", Toast.LENGTH_SHORT).show()
 
 //                        메인화면으로 이동, 로그인화면 종료
