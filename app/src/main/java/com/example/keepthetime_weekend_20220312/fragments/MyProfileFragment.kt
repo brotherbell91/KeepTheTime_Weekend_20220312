@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.keepthetime_weekend_20220312.R
+import com.example.keepthetime_weekend_20220312.databinding.FragmentMyProfileBinding
 import com.example.keepthetime_weekend_20220312.datas.BasicResponse
 import com.example.keepthetime_weekend_20220312.utils.ContextUtil
 import retrofit2.Call
@@ -14,12 +16,15 @@ import retrofit2.Response
 
 class MyProfileFragment : BaseFragment() {
 
+    lateinit var binding : FragmentMyProfileBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_my_profile,container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_profile,container,false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -50,7 +55,7 @@ class MyProfileFragment : BaseFragment() {
 //                    프래그먼트의 데이터바인딩 세팅
                     
 //                    정보를 받아온 사용자의 프사 > Glide 활용 > 이미지뷰에 반영
-//                    Glide.with(mContext).load(br.data.user.profile_img).into( imgPro )
+                    Glide.with(mContext).load(br.data.user.profile_img).into( binding.imgProfile )
                 }
             }
 
