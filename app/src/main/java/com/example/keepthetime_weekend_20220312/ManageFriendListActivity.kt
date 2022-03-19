@@ -44,6 +44,12 @@ class ManageFriendListActivity : BaseActivity() {
         ).enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
 
+                if (response.isSuccessful) {
+
+                    val br = response.body()!!
+                    mMyFriendList.addAll(br.data.friends) //서버가 주는 친구 목록을 > 화면의 ArrayList에 통째로 추가
+                }
+
             }
 
             override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
