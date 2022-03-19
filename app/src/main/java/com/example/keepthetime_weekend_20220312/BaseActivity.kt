@@ -2,7 +2,9 @@ package com.example.keepthetime_weekend_20220312
 
 import android.content.Context
 import android.os.Bundle
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.example.keepthetime_weekend_20220312.api.APIList
 import com.example.keepthetime_weekend_20220312.api.ServerAPI
 
@@ -29,6 +31,12 @@ abstract class BaseActivity : AppCompatActivity() {
 //    apilIST 변수에 세팅
         val retrofit = ServerAPI.getRetrofit(mContext)
         apiList = retrofit.create(APIList::class.java)
+
+//        (액션바가 있는 화면이라면) 액션바도 설정)
+
+        if (supportActionBar != null){
+            setCustomActionBar()
+        }
     }
 
 //    함수 - setupEvents  / setValues 모든 화면이 (각각 내용이 다르게) 구현
@@ -36,4 +44,20 @@ abstract class BaseActivity : AppCompatActivity() {
 
     abstract fun setupEvents()
     abstract fun setValues()
+
+//     커스텀 액션바 설정 함수 추가. => 실행 내용도 작성, 구체적 방안도 상속 시키자.
+    fun setCustomActionBar(){
+
+        val defaultActionBar = supportActionBar!!
+//        defaultActionBar.setDisplayShowCustomEnabled(true) // 위의 코드가 자동완성 안되면 활용.
+        defaultActionBar.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+//        resID라고나오면 R.layout.으로 작성해서 넣으라는 뜻
+        defaultActionBar.setCustomView(R.layout.my_custom_action_bar)
+//        툴바 좌우 여백 없애기
+//        툴바 안드로이드x로 선택
+        val toolbar = defaultActionBar.customView.parent as Toolbar
+        toolbar.setContentInsetsAbsolute(0, 0)
+
+    }
 }
+

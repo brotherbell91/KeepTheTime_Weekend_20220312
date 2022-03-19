@@ -25,8 +25,6 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
 
-        setCustomActionBar()
-
         setupEvents()
         setValues()
 
@@ -74,20 +72,6 @@ class MainActivity : BaseActivity() {
         mvp2a = MainViewPager2Adapter(this)
 
         binding.mainViewPager2.adapter = mvp2a
-
-    }
-
-    fun setCustomActionBar(){
-
-        val defaultActionBar = supportActionBar!!
-//        defaultActionBar.setDisplayShowCustomEnabled(true) // 위의 코드가 자동완성 안되면 활용.
-        defaultActionBar.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
-//        resID라고나오면 R.layout.으로 작성해서 넣으라는 뜻
-        defaultActionBar.setCustomView(R.layout.my_custom_action_bar)
-//        툴바 좌우 여백 없애기
-//        툴바 안드로이드x로 선택
-        val toolbar = defaultActionBar.customView.parent as Toolbar
-        toolbar.setContentInsetsAbsolute(0, 0)
 
     }
 }
