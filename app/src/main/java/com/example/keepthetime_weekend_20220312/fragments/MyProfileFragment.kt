@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
+import com.example.keepthetime_weekend_20220312.ManageFriendListActivity
 import com.example.keepthetime_weekend_20220312.R
 import com.example.keepthetime_weekend_20220312.SplashActivity
 import com.example.keepthetime_weekend_20220312.databinding.FragmentMyProfileBinding
@@ -32,6 +33,7 @@ class MyProfileFragment : BaseFragment() {
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+
         super.onActivityCreated(savedInstanceState)
         setupEvents()
         setValues()
@@ -43,6 +45,12 @@ class MyProfileFragment : BaseFragment() {
 
 
     override fun setupEvents() {
+
+        binding.btnMyFriendsList.setOnClickListener {
+
+            val myIntent = Intent(mContext, ManageFriendListActivity::class.java)
+            startActivity(myIntent)
+        }
 
         binding.btnLogout.setOnClickListener {
 
