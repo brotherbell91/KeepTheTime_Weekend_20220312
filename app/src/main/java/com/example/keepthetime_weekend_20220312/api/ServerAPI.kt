@@ -3,6 +3,7 @@ package com.example.keepthetime_weekend_20220312.api
 import android.content.Context
 import com.example.keepthetime_weekend_20220312.utils.ContextUtil
 import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -49,9 +50,17 @@ class ServerAPI {
                     }
                 }
 
+//                만들어낸 인터셉터를 활용하도록, retrofit 변수를 세팅
+//                레트로핏이 사용하는, OkHttp의 클라이언트 객체를 수정.
+
+                val myClient = OkHttpClient.Builder()
+                    .addInterceptor(interceptor)
+                    .build()
+
                 retrofit = Retrofit.Builder()
                     .baseUrl(BASE_URL) //기본 주소가 어디인지 세팅
                     .addConverterFactory(GsonConverterFactory.create()) //서버가 주는 json 양식을, 일반 자료형 / 클래스로 쉽게 변환해주는 도구 세팅.
+                    .client(myClient) //인터셉터를 부착해둔 클라이언트로 통신하도록
                     .build() //세팅이 모두 끝났으면, Retrofit 객체로 만들어달라.
             }
 
