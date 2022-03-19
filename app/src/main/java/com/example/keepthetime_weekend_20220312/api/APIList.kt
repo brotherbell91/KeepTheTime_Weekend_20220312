@@ -40,4 +40,12 @@ interface APIList {
         @Header("X-Http-Token") token : String,
     ) : Call<BasicResponse>
 
+//    토큰값을 매번 첨부하는 코드를 적기는 번거롭다.
+//    자동으로 토큰을 첨부하는 세팅. (API Request 호출 세팅)
+
+    @GET("/user/friend")
+    fun getRequestFriendList(
+
+    )
+
 }

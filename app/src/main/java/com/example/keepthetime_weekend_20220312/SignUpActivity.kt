@@ -1,6 +1,5 @@
 package com.example.keepthetime_weekend_20220312
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil

@@ -22,6 +22,7 @@ class MainActivity : BaseActivity() {
 
         setupEvents()
         setValues()
+
     }
 
     override fun setupEvents() {
