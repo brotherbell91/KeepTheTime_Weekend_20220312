@@ -3,6 +3,7 @@ package com.example.keepthetime_weekend_20220312
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import com.example.keepthetime_weekend_20220312.adapters.FriendViewPagerAdapter
 import com.example.keepthetime_weekend_20220312.adapters.MyFriendAdapter
 import com.example.keepthetime_weekend_20220312.databinding.ActivityManageFriendListBinding
 import com.example.keepthetime_weekend_20220312.datas.BasicResponse
@@ -15,7 +16,7 @@ class ManageFriendListActivity : BaseActivity() {
 
     lateinit var binding : ActivityManageFriendListBinding
 
-
+    lateinit var friendViewPagerAdapter : FriendViewPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,32 +32,11 @@ class ManageFriendListActivity : BaseActivity() {
 
     override fun setValues() {
 
-    }
+        friendViewPagerAdapter = FriendViewPagerAdapter(supportFragmentManager)
+        binding.friendViewPager.adapter = friendViewPagerAdapter
 
-    fun getMyFriendListFromServer(){
-
-        apiList.getRequestFriendList(
-            "my"
-        ).enqueue(object : Callback<BasicResponse>{
-            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
-
-                if (response.isSuccessful) {
-
-                    val br = response.body()!!
-                    mMyFriendList.addAll(br.data.friends) //서버가 주는 친구 목록을 > 화면의 ArrayList에 통째로 추가
-
-//                    리스트뷰의 어댑터 설정보다, 목록에 데이터 추가가 더 늦게 이루어질 수도 있다.
-                    mAdapter.notifyDataSetChanged() //리스트뷰으 내용물 새로고침
-
-                }
-
-            }
-
-            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
-
-            }
-        })
-
+//        탭레이아웃 세팅
+        binding.friendTabLayout.setupWithViewPager(binding.friendViewPager)
 
     }
 }
