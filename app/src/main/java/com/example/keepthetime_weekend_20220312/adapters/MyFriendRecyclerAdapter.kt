@@ -17,7 +17,7 @@ class MyFriendRecyclerAdapter(
 ) : RecyclerView.Adapter<MyFriendRecyclerAdapter.MyViewHolder>() {
 
 //    클래스 내부의 클래스(inner class) 제작 > MyFriendRecyclerAdapter가 혼자 사용.
-
+//  inner 붙이는 이유 : 리사이클러 내에서만 쓰기 때문에 사용, inner 미사용시 mContext가 누구를 가리키는지 못찾음
     inner class MyViewHolder(view : View) : RecyclerView.ViewHolder(view){
 
 //        멤버변수로, view 변수 내부에서 실제 사용할 UI들을 가져와서 담아두자.

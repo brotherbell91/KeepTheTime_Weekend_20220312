@@ -7,10 +7,27 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/myFriendRecyclerView"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/myFriendRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/btnAddFriend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="친구 추가 하기" />
+
+
+        </FrameLayout>
+
     </LinearLayout>
 
 </layout>
