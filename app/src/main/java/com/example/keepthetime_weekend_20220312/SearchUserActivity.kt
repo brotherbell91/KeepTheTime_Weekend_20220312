@@ -45,6 +45,11 @@ class SearchUserActivity : BaseActivity() {
                 ) {
                     if (response.isSuccessful) {
 
+//                        기존의 목록이 남아있는 채로, addAll() 하게 되면, 기존 목록이 누적되어 나타남.
+//                        기존 목록은 전부 삭제하고, 서버가 주는 데이터 새로 채우기.
+
+                        mSearchedUserList.clear()
+
                         val br = response.body()!!
                         mSearchedUserList.addAll( br.data.users )
 
