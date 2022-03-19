@@ -1,7 +1,6 @@
 package com.example.keepthetime_weekend_20220312.fragments
 
 import android.os.Bundle
-import android.service.autofill.UserData
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +11,7 @@ import com.example.keepthetime_weekend_20220312.R
 import com.example.keepthetime_weekend_20220312.adapters.MyFriendRecyclerAdapter
 import com.example.keepthetime_weekend_20220312.databinding.FragmentMyFriendListBinding
 import com.example.keepthetime_weekend_20220312.datas.BasicResponse
+import com.example.keepthetime_weekend_20220312.datas.UserData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
