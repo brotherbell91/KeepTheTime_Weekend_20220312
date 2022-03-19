@@ -35,7 +35,7 @@ interface APIList {
         @Query("value") value : String,
     ) : Call<BasicResponse>
 
-    @GET("/user")
+    @GET("/user") //초기 토큰 세팅으로 인해 지워도 상관 없음
     fun getRequestMyInfo(
         @Header("X-Http-Token") token : String,
     ) : Call<BasicResponse>
@@ -45,7 +45,7 @@ interface APIList {
 
     @GET("/user/friend")
     fun getRequestFriendList(
-
-    )
+        @Query("type") type : String,
+    ) : Call<BasicResponse>
 
 }

@@ -4,5 +4,7 @@ class DataResponse(
 //    val user : ?? 현재는 skip
     val user : UserData,
     val token : String,
+
+
 ) {
 }
