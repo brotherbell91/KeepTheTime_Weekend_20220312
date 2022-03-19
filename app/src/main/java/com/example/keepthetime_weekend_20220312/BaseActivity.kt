@@ -34,7 +34,12 @@ abstract class BaseActivity : AppCompatActivity() {
 
 //        (액션바가 있는 화면이라면) 액션바도 설정)
 
-        if (supportActionBar != null){
+//        if (supportActionBar != null){
+//            setCustomActionBar()
+//        }
+
+        supportActionBar?.let {
+//            supportActionBar가 null이 아닐때 (실체가 있을때) 실행할 코드 : let{}
             setCustomActionBar()
         }
     }
