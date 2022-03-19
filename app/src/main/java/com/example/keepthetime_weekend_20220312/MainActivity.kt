@@ -36,11 +36,9 @@ class MainActivity : BaseActivity() {
 //            it 변수 : 선택된 메뉴가 뭔지? 알려줌.
 //            it변수의 id값에 따라, 페이지 이동.
 
-            if (it.itemId == R.id.Home){
-                binding.mainViewPager2.currentItem = 0
-            }
-            else{
-                binding.mainViewPager2.currentItem = 1
+            binding.mainViewPager2.currentItem = when ( it.itemId) {
+                R.id.Home -> 0
+                else -> 1
             }
 
             return@setOnItemSelectedListener true
@@ -55,11 +53,10 @@ class MainActivity : BaseActivity() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
 
-                if (position == 0) {
-                    binding.mainBottomNav.selectedItemId = R.id.Home
-                }
-                else {
-                    binding.mainBottomNav.selectedItemId = R.id.profile
+
+                binding.mainBottomNav.selectedItemId = when(position) {
+                    0 -> R.id.Home
+                    else -> R.id.profile
                 }
 
             }
