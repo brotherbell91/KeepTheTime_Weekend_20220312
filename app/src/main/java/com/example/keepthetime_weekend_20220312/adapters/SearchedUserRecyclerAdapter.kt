@@ -12,7 +12,11 @@ import com.bumptech.glide.Glide
 import com.example.keepthetime_weekend_20220312.R
 import com.example.keepthetime_weekend_20220312.api.APIList
 import com.example.keepthetime_weekend_20220312.api.ServerAPI
+import com.example.keepthetime_weekend_20220312.datas.BasicResponse
 import com.example.keepthetime_weekend_20220312.datas.UserData
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SearchedUserRecyclerAdapter(
     val mContext: Context,
@@ -38,6 +42,20 @@ class SearchedUserRecyclerAdapter(
 
                 val retrofit = ServerAPI.getRetrofit(mContext)
                 val apiList = retrofit.create(APIList::class.java)
+
+                apiList.postRequestAddFriend(
+                    data.id
+                ).enqueue(object :Callback<BasicResponse>{
+                    override fun onResponse(
+                        call: Call<BasicResponse>,
+                        response: Response<BasicResponse>
+                    ) {
+                    }
+
+                    override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                    }
+                })
+
 
 
             }
