@@ -2,6 +2,7 @@ package com.example.keepthetime_weekend_20220312
 
 import android.content.Context
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -20,6 +21,8 @@ abstract class BaseActivity : AppCompatActivity() {
 //    apilIST : 앱에서 활용할 수 있는 API 목록
 
     lateinit var apiList : APIList
+
+    lateinit var txtTitle: TextView
 
 //    bundle로 끝나는 함수 선택
 //    다른 화면들의 super.onCreate가 실행될때, 부가적으로 실행해줄 코드들 추가.
@@ -62,6 +65,11 @@ abstract class BaseActivity : AppCompatActivity() {
 //        툴바 안드로이드x로 선택
         val toolbar = defaultActionBar.customView.parent as Toolbar
         toolbar.setContentInsetsAbsolute(0, 0)
+
+//            커스텀뷰 적용 이후, txtTitle에 연결. => 다른 화면들에 상속 완성.
+        txtTitle = defaultActionBar.customView.findViewById(R.id.txtTitle)
+
+
 
     }
 }

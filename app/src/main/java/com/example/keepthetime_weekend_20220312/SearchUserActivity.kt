@@ -71,6 +71,8 @@ class SearchUserActivity : BaseActivity() {
 
     override fun setValues() {
 
+        txtTitle.text = "사용자 검색"
+
         mAdapter = SearchedUserRecyclerAdapter( mContext, mSearchedUserList )
         binding.searchedUserRecyclerView.adapter = mAdapter
         binding.searchedUserRecyclerView.layoutManager = LinearLayoutManager(mContext)

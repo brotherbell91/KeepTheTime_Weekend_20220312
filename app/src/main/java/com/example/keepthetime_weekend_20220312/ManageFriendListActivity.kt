@@ -32,6 +32,8 @@ class ManageFriendListActivity : BaseActivity() {
 
     override fun setValues() {
 
+        txtTitle.text = "친구 관리"
+
         friendViewPagerAdapter = FriendViewPagerAdapter(supportFragmentManager)
         binding.friendViewPager.adapter = friendViewPagerAdapter
 
