@@ -1,5 +1,6 @@
 package com.example.keepthetime_weekend_20220312.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.keepthetime_weekend_20220312.R
+import com.example.keepthetime_weekend_20220312.SearchUserActivity
 import com.example.keepthetime_weekend_20220312.adapters.MyFriendRecyclerAdapter
 import com.example.keepthetime_weekend_20220312.databinding.FragmentMyFriendListBinding
 import com.example.keepthetime_weekend_20220312.datas.BasicResponse
@@ -42,6 +44,12 @@ class MyFriendListFragment : BaseFragment() {
 
 
     override fun setupEvents() {
+
+        binding.btnAddFriend.setOnClickListener {
+
+            val myIntent = Intent(mContext, SearchUserActivity::class.java)
+            startActivity(myIntent)
+        }
 
     }
 
