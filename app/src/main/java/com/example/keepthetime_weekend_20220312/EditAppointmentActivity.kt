@@ -127,10 +127,16 @@ class EditAppointmentActivity : BaseActivity() {
 
 //            받아낸 inputTitle 의 내용이 비어있다면 ? ==> 토스트로 제목 입력 안내. => 지급의 이벤트 처리 강제 종료.
             if (inputTitle.isEmpty()){
-
                 Toast.makeText(mContext, "제목을 입력해야 합니다.", Toast.LENGTH_SHORT).show()
 //                실행중인 함수 강제 종료 => 결과 임의 설정.
                 return@setOnClickListener //리턴으로 셋온클릭리스너로 돌아오기
+            }
+
+//            약속 일시 가공전에 , 일자 / 시간 모두 선택했는지 확인, 선택하지 않은 항목이 있다면 안내 + 함수 강제 종료.
+
+            if(binding.txtDate.text == "약속 일자" || binding.txtTime.text == "약속 시간"){
+                Toast.makeText(mContext, "일시를 모두 선택해주세요", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
 
             val serverFormat = SimpleDateFormat("yyyy-MM-dd HH:mm")
@@ -138,7 +144,19 @@ class EditAppointmentActivity : BaseActivity() {
 
             val inputPlaceName = binding.edtPlaceName.text.toString()
 
+            if (inputPlaceName.isEmpty()){
+
+                Toast.makeText(mContext,"약속 장소 이름을 입력해주세요", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
 //            네이버 지도에 마커로 찍어둔 장소 > 서버에 전송?
+
+//            myMarker가 실제로 만들어져있는지 ? 아니라면 장소입력 안내 + 함수 종료.
+            if(myMarker == null){
+                Toast.makeText(mContext, "지도를 클릭해서, 약속 장소를 선택해주세요.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
 //            내가 찍어둔 마커가 있다고 전제하고 코딩.
             val lat = myMarker!!.position.latitude //찍힌 마커의 위도 추출.
