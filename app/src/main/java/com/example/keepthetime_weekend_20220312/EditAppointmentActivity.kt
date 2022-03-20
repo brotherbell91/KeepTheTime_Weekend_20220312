@@ -134,6 +134,10 @@ class EditAppointmentActivity : BaseActivity() {
             marker.iconTintColor = Color.RED //레드
 //            marker.iconTintColor = Color.parseColor("#FFFFFF") //원하는 색 넣기
 
+//            마커 크기 변경
+            marker.width = 50 //가로
+            marker.height = 80 //세로
+
         }
 
     }
