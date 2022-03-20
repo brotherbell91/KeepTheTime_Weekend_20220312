@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.keepthetime_weekend_20220312.databinding.ActivityEditAppointmentBinding
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
+import com.naver.maps.map.overlay.Marker
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -120,6 +121,11 @@ class EditAppointmentActivity : BaseActivity() {
 //            기본 지도의 시작 화면 : 서울시청. => 네이버지도의 시작 좌표 : 집
             val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.45229535829559, 127.16827125535715))
             naverMap.moveCamera(cameraUpdate)
+
+//            넵플러스 학원 위치에, 마커를 띄움
+            val marker = Marker()
+            marker.position = LatLng(37.45229535829559, 127.16827125535715)
+            marker.map = naverMap
 
         }
 
