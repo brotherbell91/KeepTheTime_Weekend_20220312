@@ -125,6 +125,14 @@ class EditAppointmentActivity : BaseActivity() {
             val inputTitle = binding.edtTitle.text.toString()
 //            약속 일시  : mSelectedDateTimeCal 의 일시를 => "2022-03-20 14:19:50" 형태로 가공해서 첨부.
 
+//            받아낸 inputTitle 의 내용이 비어있다면 ? ==> 토스트로 제목 입력 안내. => 지급의 이벤트 처리 강제 종료.
+            if (inputTitle.isEmpty()){
+
+                Toast.makeText(mContext, "제목을 입력해야 합니다.", Toast.LENGTH_SHORT).show()
+//                실행중인 함수 강제 종료 => 결과 임의 설정.
+                return@setOnClickListener //리턴으로 셋온클릭리스너로 돌아오기
+            }
+
             val serverFormat = SimpleDateFormat("yyyy-MM-dd HH:mm")
             val serverDateTimeStr = serverFormat.format(mSelectedDateTimeCal.time) //첨부할 약속 일시
 
