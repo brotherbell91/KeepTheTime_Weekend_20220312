@@ -74,6 +74,7 @@
 <!--  네이버 지도를 배치해서, 클릭한 좌표를 추출해서 사용.  -->
 
         <com.naver.maps.map.MapView
+            android:id="@+id/mapView"
             android:layout_width="match_parent"
             android:layout_height="250dp" />
 
