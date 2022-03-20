@@ -146,6 +146,10 @@ class EditAppointmentActivity : BaseActivity() {
 
 //                마커를 클릭된 지점에 설정.
 
+                val myMarker = Marker()
+                myMarker.position = latLng //클릭된 지점 자체를 위치로 설정.
+                myMarker.map = naverMap
+
             }
 
 
