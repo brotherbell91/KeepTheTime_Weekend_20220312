@@ -2,6 +2,7 @@ package com.example.keepthetime_weekend_20220312
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,7 @@ import com.example.keepthetime_weekend_20220312.databinding.ActivityEditAppointm
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.util.MarkerIcons
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -126,6 +128,11 @@ class EditAppointmentActivity : BaseActivity() {
             val marker = Marker()
             marker.position = LatLng(37.45229535829559, 127.16827125535715)
             marker.map = naverMap
+
+//            마커 색상 변경
+            marker.icon = MarkerIcons.BLACK //블랙 , 이 위에 원하는 색 커스텀
+            marker.iconTintColor = Color.RED //레드
+//            marker.iconTintColor = Color.parseColor("#FFFFFF") //원하는 색 넣기
 
         }
 
