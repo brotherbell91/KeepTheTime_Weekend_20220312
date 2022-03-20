@@ -67,7 +67,6 @@ interface APIList {
         @Field("place") placeName : String,
         @Field("latitude") lat : Double,
         @Field("longitude") lng : Double,
-
     ) : Call<BasicResponse>
 
 }
