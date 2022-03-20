@@ -26,6 +26,9 @@ class EditAppointmentActivity : BaseActivity() {
 //    calendar는 java로 선택
     val mSelectedDateTimeCal = Calendar.getInstance() //현재 일시가 저장됨 (일시 + 초 + 1/1000초)
 
+//    지도에 띄워줄 목적이 표시 마커
+    var myMarker : Marker? = null // 처음에는 목적지 마커도 없는 상태
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_edit_appointment)
@@ -146,13 +149,15 @@ class EditAppointmentActivity : BaseActivity() {
 
 //                마커를 클릭된 지점에 설정.
 
-                val myMarker = Marker()
-                myMarker.position = latLng //클릭된 지점 자체를 위치로 설정.
-                myMarker.map = naverMap
+//                myMarker가 만들어진게 없다면, 새로 마커 생성.
+//                만들어진게 있다면, 기존 마커 재활용
 
-            }
+                if (myMarker == null){
+                    myMarker = Marker()
+                }
 
-
+                myMarker!!.position = latLng //클릭된 지점 자체를 위치로 설정.
+                myMarker!!.map = naverMap
             }
 
         }
