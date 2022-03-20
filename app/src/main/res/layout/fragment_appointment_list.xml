@@ -5,9 +5,10 @@
     android:orientation="vertical"
     android:gravity="center">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="여기는 약속 목록 화면입니다." />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/appointmentRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
 </LinearLayout>
