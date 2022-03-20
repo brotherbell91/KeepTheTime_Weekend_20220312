@@ -43,6 +43,7 @@ class EditAppointmentActivity : BaseActivity() {
 
 //                    선택된 일시를 저장할 변수에, 연/월/일 세팅.
                     mSelectedDateTimeCal.set(year, month, dayOfMonth)
+//                    년월일을 나누려면 앞에 calendar. 을 넣어야함
 
 //                    약속 일자 텍스트뷰의 문구를 "3월 20일" 형태로 가공해서 출력.
 //                    calendar(내부의 Date) 를 => String 으로 가공 전문 클래스(SimpleDateFormat) 활용.

@@ -58,6 +58,25 @@
 
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="약속 장소"
+            android:layout_marginTop="10dp" />
+
+        <EditText
+            android:id="@+id/edtPlaceName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="장소를 입력하세요"
+            android:singleLine="true"/>
+
+<!--  네이버 지도를 배치해서, 클릭한 좌표를 추출해서 사용.  -->
+
+        <com.naver.maps.map.MapView
+            android:layout_width="match_parent"
+            android:layout_height="250dp" />
+
 
 
     </LinearLayout>
