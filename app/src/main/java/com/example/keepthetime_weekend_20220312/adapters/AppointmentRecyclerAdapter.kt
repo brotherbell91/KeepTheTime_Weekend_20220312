@@ -22,11 +22,18 @@ class AppointmentRecyclerAdapter(
     inner class MyViewHolder(view : View) : RecyclerView.ViewHolder(view){
 
 //        멤버변수로, view 변수 내부에서 실제 사용할 UI들을 가져와서 담아두자.
+        val txtTitle = view.findViewById<TextView>(R.id.txtTitle)
+        val txtDateTime = view.findViewById<TextView>(R.id.txtDateTime)
+        val txtPlaceName = view.findViewById<TextView>(R.id.txtPlaceName)
+        val imgMap = view.findViewById<ImageView>(R.id.imgMap)
 
 
 //        함수로, 실 데이터를 넘겨받아서, 멤버변수의 UI태그들과 결합하는 기능 추가.
         fun bind(data : AppointmentData){
 
+            txtTitle.text = data.title
+            txtDateTime.text = data.datetime //임시 서버문구 그대로 출력.
+            txtPlaceName.text = data.place
 
         }
 
