@@ -27,6 +27,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
     lateinit var imgBack: ImageView
 
+    lateinit var imgadd : ImageView
+
 //    bundle로 끝나는 함수 선택
 //    다른 화면들의 super.onCreate가 실행될때, 부가적으로 실행해줄 코드들 추가.
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +45,7 @@ abstract class BaseActivity : AppCompatActivity() {
 //        if (supportActionBar != null){
 //            setCustomActionBar()
 //        }
+
 
         supportActionBar?.let {
 //            supportActionBar가 null이 아닐때 (실체가 있을때) 실행할 코드 : let{}
@@ -72,6 +75,7 @@ abstract class BaseActivity : AppCompatActivity() {
 //            커스텀뷰 적용 이후, txtTitle에 연결. => 다른 화면들에 상속 완성.
         txtTitle = defaultActionBar.customView.findViewById(R.id.txtTitle)
         imgBack = defaultActionBar.customView.findViewById(R.id.imgBack)
+        imgadd = defaultActionBar.customView.findViewById(R.id.imgAdd)
 
 //        imgBack은 눌리면 할일이 모든 화면에서 동일.
         imgBack.setOnClickListener {
