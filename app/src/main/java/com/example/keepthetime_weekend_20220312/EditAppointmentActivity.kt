@@ -46,7 +46,10 @@ class EditAppointmentActivity : BaseActivity() {
 //                    calendar(내부의 Date) 를 => String 으로 가공 전문 클래스(SimpleDateFormat) 활용.
                     
                     val sdf = SimpleDateFormat("M월 d일")
-                    
+
+//                    새 양식: 2022-03-05 양식
+//                    val sdf = SimpleDateFormat("yyyy-MM-dd")
+
 //                    sdf로 format해낸 String을, txtDate의 문구로 반영
 //                    format은 date로 선택
                     binding.txtDate.text = sdf.format(mSelectedDateTimeCal.time)
