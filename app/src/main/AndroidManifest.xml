@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KeepTheTime_Weekend_20220312">
         <activity
+            android:name=".ViewMapActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditAppointmentActivity"
             android:exported="false" />
         <activity
@@ -43,7 +46,6 @@
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="rhhts6pzex" />
-
     </application>
 
 </manifest>
