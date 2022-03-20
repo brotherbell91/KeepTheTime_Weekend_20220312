@@ -138,6 +138,19 @@ class EditAppointmentActivity : BaseActivity() {
             marker.width = 50 //가로
             marker.height = 80 //세로
 
+//            네이버 지도의 클릭 이벤트
+            naverMap.setOnMapClickListener { pointF, latLng ->
+
+//                클릭된 좌표 latLng 변수의 내용을 토스트로 출력
+                Toast.makeText(mContext,"위도 : ${latLng.latitude}, 경도 : ${latLng.longitude}", Toast.LENGTH_SHORT).show()
+
+//                마커를 클릭된 지점에 설정.
+
+            }
+
+
+            }
+
         }
 
     }
