@@ -40,8 +40,16 @@ class MainActivity : BaseActivity() {
 //            it변수의 id값에 따라, 페이지 이동.
 
             binding.mainViewPager2.currentItem = when ( it.itemId) {
-                R.id.Home -> 0
-                else -> 1
+                R.id.Home -> {
+                    imgadd.visibility = View.VISIBLE
+                    0
+                }
+                else ->
+                {
+                    imgadd.visibility = View.GONE
+                    1
+                }
+
             }
 
             return@setOnItemSelectedListener true
@@ -77,6 +85,8 @@ class MainActivity : BaseActivity() {
         //        상속받은 imgBack 숨김처리.
 
         imgBack.visibility = View.GONE
+
+        imgadd.visibility = View.VISIBLE
 
 
     }
