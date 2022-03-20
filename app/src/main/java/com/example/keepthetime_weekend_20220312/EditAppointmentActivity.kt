@@ -114,6 +114,23 @@ class EditAppointmentActivity : BaseActivity() {
 
         }
 
+        binding.btnSave.setOnClickListener {
+
+//            입력한 값들 추출 => 서버에 전송
+            val inputTitle = binding.edtTitle.text.toString()
+//            약속 일시  : mSelectedDateTimeCal 의 일시를 => "2022-03-20 14:19:50" 형태로 가공해서 첨부.
+
+            val serverFormat = SimpleDateFormat("yyyy-MM-dd HH:mm")
+            val serverDateTimeStr = serverFormat.format(mSelectedDateTimeCal.time) //첨부할 약속 일시
+
+            val inputPlaceName = binding.edtPlaceName.text.toString()
+
+//            네이버 지도에 마커로 찍어둔 장소 > 서버에 전송?
+
+
+
+        }
+
     }
 
     override fun setValues() {
