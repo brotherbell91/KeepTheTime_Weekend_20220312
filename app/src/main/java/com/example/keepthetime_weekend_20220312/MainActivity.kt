@@ -48,7 +48,7 @@ class MainActivity : BaseActivity() {
 //            it변수의 id값에 따라, 페이지 이동.
 
             binding.mainViewPager2.currentItem = when ( it.itemId) {
-                R.id.Home -> {
+                R.id.home -> {
                     imgadd.visibility = View.VISIBLE
                     0
                 }
@@ -74,7 +74,7 @@ class MainActivity : BaseActivity() {
 
 
                 binding.mainBottomNav.selectedItemId = when(position) {
-                    0 -> R.id.Home
+                    0 -> R.id.home
                     else -> R.id.profile
                 }
 

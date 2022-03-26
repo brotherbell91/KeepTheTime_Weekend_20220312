@@ -31,7 +31,7 @@ class EditAppointmentActivity : BaseActivity() {
 //    calendar는 java로 선택
     val mSelectedDateTimeCal = Calendar.getInstance() //현재 일시가 저장됨 (일시 + 초 + 1/1000초)
 
-//    지도에 띄워줄 목적이 표시 마커
+//    지도에 띄워줄 목적지 표시 마커
     var myMarker : Marker? = null // 처음에는 목적지 마커도 없는 상태
 
     override fun onCreate(savedInstanceState: Bundle?) {

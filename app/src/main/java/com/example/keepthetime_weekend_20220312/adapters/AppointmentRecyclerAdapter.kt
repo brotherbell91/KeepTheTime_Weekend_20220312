@@ -42,6 +42,11 @@ class AppointmentRecyclerAdapter(
 //                지도만 크게 보는 화면으로 이동.
                 val myIntent = Intent(mContext, ViewMapActivity::class.java)
 //                startActivity는, 화면/ 프래그먼트에서 상속 받는 기능. => Context가 상속.
+
+                val clickedAppointment = mList[position]
+
+                myIntent.putExtra("map", clickedAppointment)
+
                 mContext.startActivity(myIntent)
 
             }
