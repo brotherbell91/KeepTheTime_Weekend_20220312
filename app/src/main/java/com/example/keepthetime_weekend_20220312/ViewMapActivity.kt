@@ -35,22 +35,22 @@ class ViewMapActivity : BaseActivity() {
 
     override fun setValues() {
 
+//        약속이름을 화면의 제목으로.
+        txtTitle.text = mAppointmentData.title
+
+//        지도 객체 얻어오기
+
         binding.mapView.getMapAsync {
 
-            val lat = mAppointmentData.latitude
-
-            val lng = mAppointmentData.longitude
-
-
             val naverMap = it
-//            카메라 이동
-            val cameraUpdate = CameraUpdate.scrollTo(LatLng(lat, lng))
-            naverMap.moveCamera(cameraUpdate)
 
-//            마커
-            val marker = Marker()
-            marker.position = LatLng(lat, lng)
-            marker.map = naverMap
+//            naverMap을 이용해서, 약속 장소 좌표 표시
+
+//            약속 장소 => LatLng 클래스로 저장해두자.
+
+            val latLng = LatLng( mAppointmentData.latitude,  mAppointmentData.longitude )
+
+//            지도 조작 코드
 
         }
 
