@@ -10,5 +10,8 @@ class DataResponse(
     val users : List<UserData>, //검색 목록 API가 호출되면 사용할 데이터.
 
     val appointments : List<AppointmentData>, //약속 목록 API호출시 사용할 데이터
+
+    val places: List<StartingPointData>,
+
 ) {
 }
