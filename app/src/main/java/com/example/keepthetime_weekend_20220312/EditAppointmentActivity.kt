@@ -15,6 +15,7 @@ import com.example.keepthetime_weekend_20220312.databinding.ActivityEditAppointm
 import com.example.keepthetime_weekend_20220312.datas.BasicResponse
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
+import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.util.MarkerIcons
 import retrofit2.Call
@@ -234,6 +235,24 @@ class EditAppointmentActivity : BaseActivity() {
 
                 myMarker!!.position = latLng //클릭된 지점 자체를 위치로 설정.
                 myMarker!!.map = naverMap
+
+                //            정보창 띄우기
+
+                val infoWindow = InfoWindow()
+
+
+//            object : 추상클래스(생성자) {  }  => 추상 클래스 객체
+//            object : 인터페이스 {   } => 인터페이스는 생성자 X
+                infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(mContext) {
+
+                    override fun getText(p0: InfoWindow): CharSequence {
+//                    CharSequence : String으로 생각해도 무방.
+                        return "정보 창 내용"
+                    }
+
+                }
+
+                infoWindow.open(marker)
             }
 
         }
