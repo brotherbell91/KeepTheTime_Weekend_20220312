@@ -26,7 +26,20 @@ class StartingPointRecyclerAdapter(
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
+        val txtStartingPointName = view.findViewById<TextView>(R.id.txtStartingPointName)
+        val txtPrimary = view.findViewById<TextView>(R.id.txtPrimary)
+        val imgMap = view.findViewById<ImageView>(R.id.imgMap)
+
         fun bind(data: StartingPointData) {
+
+            txtStartingPointName.text = data.name
+
+            if (data.is_primary) {
+                txtPrimary.visibility = View.VISIBLE
+            }
+            else {
+                txtPrimary.visibility = View.GONE
+            }
 
         }
 
