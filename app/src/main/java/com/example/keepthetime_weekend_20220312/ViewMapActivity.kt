@@ -9,6 +9,10 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
+import com.odsay.odsayandroidsdk.API
+import com.odsay.odsayandroidsdk.ODsayData
+import com.odsay.odsayandroidsdk.ODsayService
+import com.odsay.odsayandroidsdk.OnResultCallbackListener
 
 //도전 과제
 //네이버 지도를 화면 가득 띄우기. (라이브러리는 이미 설치 됨)
@@ -61,23 +65,34 @@ class ViewMapActivity : BaseActivity() {
             marker.position = latLng
             marker.map = naverMap
 
-            //            정보창 띄우기
+//            대중교통 길찾기 라이브러리 활용 => 소요 시간 + 비용 정보창 띄우기.
 
-            val infoWindow = InfoWindow()
+            val odSay = ODsayService.init(mContext, "hvTDdqC5yX4rd5jJykB8m9mL78tTFR64I3ExPwteLxk")
+
+            odSay.requestSearchPubTransPath(
+                mAppointmentData.start_longitude.toString(), // 출발지 X좌표 (경도)를 String으로
+                mAppointmentData.start_latitude.toString(),
+                mAppointmentData.longitude.toString(),  // 도착지 (약속장소) X좌표 (경도)를 String
+                mAppointmentData.latitude.toString(),
+                null,
+                null,
+                null,
+                object : OnResultCallbackListener {
+                    override fun onSuccess(p0: ODsayData?, p1: API?) {
+                        // 길찾기 응답이 돌아오면 할 일.
 
 
-//            object : 추상클래스(생성자) {  }  => 추상 클래스 객체
-//            object : 인터페이스 {   } => 인터페이스는 생성자 X
-            infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(mContext) {
+                    }
 
-                override fun getText(p0: InfoWindow): CharSequence {
-//                    CharSequence : String으로 생각해도 무방.
-                    return mAppointmentData.place
+                    override fun onError(p0: Int, p1: String?, p2: API?) {
+
+                    }
+
                 }
+            )
 
-            }
 
-            infoWindow.open(marker)
+
 
         }
 
