@@ -180,6 +180,17 @@ class ViewMapActivity : BaseActivity() {
                                 for (j in  0 until stationsArr.length()) {
                                     val stationObj = stationsArr.getJSONObject(j)
                                     Log.d("정거장내역", stationObj.toString())
+
+//                                    위도 (String으로 길찾기라이브러리가 제공) > Double로 변환 추출 => lat 변수에 저장.
+                                    val stationLat =  stationObj.getString("y").toDouble()
+                                    val stationLng = stationObj.getString("x").toDouble()
+
+//                                    네이버 지도 좌표 객체로 만들자.
+                                    val stationLatLng = LatLng( stationLat,  stationLng )
+
+//                                    경로선이 지나갈 좌표로 추가.
+                                    pathPoints.add( stationLatLng )
+
                                 }
 
                             }
