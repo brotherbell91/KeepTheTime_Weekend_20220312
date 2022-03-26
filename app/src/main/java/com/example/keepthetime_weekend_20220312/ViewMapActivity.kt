@@ -52,6 +52,14 @@ class ViewMapActivity : BaseActivity() {
 
 //            지도 조작 코드
 
+            val cameraUpdate = CameraUpdate.scrollTo( latLng )
+
+            naverMap.moveCamera( cameraUpdate )
+
+            val marker = Marker()
+            marker.position = latLng
+            marker.map = naverMap
+
         }
 
     }
