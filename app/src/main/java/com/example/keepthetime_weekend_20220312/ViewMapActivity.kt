@@ -17,13 +17,13 @@ class ViewMapActivity : BaseActivity() {
 
     lateinit var binding : ActivityViewMapBinding
 
-    lateinit var mAppointmentData : AppointmentData //새로추가
+    lateinit var mAppointmentData : AppointmentData //화면에 넘겨준 약속 자체
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_view_map)
 
-        mAppointmentData = intent.getSerializableExtra("map") as AppointmentData
+        mAppointmentData = intent.getSerializableExtra("appointment") as AppointmentData
 
         setupEvents()
         setValues()
