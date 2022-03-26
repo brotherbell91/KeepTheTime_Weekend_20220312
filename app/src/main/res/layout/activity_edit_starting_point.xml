@@ -7,7 +7,43 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:padding="20dp"
         tools:context=".EditStartingPointActivity">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="장소 이름" />
+
+        <EditText
+            android:id="@+id/edtStartingPointName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="출발지의 이름을 메모처럼 적어주세요." />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="위치 선택"
+            android:layout_marginTop="10dp" />
+
+        <com.naver.maps.map.MapView
+            android:id="@+id/naverMapView"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="5dp" />
+
+        <CheckBox
+            android:id="@+id/primaryCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기본 출발지 설정" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="출발지 저장" />
 
     </LinearLayout>
 
