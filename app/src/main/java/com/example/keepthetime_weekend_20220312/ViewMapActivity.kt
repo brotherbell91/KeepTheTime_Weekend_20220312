@@ -3,6 +3,7 @@ package com.example.keepthetime_weekend_20220312
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.example.keepthetime_weekend_20220312.databinding.ActivityViewMapBinding
 import com.example.keepthetime_weekend_20220312.datas.AppointmentData
@@ -108,9 +109,13 @@ class ViewMapActivity : BaseActivity() {
 //                        infoWindow (네이버 지도 기능)에 활용 + 로직 활용
                         val infoWindow = InfoWindow()
 
-                        infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(mContext) {
-                            override fun getText(p0: InfoWindow): CharSequence {
-                                return "이동시간 : ${totalTime}분, 소요비용 : ${payment}원"
+                        infoWindow.adapter = object : InfoWindow.DefaultViewAdapter(mContext) {
+
+                            override fun getContentView(p0: InfoWindow): View {
+
+//                                리스트뷰의 getView 함수와 비슷한 구조 (return 타입 View)
+//                                LayoutInflater로 xml을 객체로 가져와서 => 리턴해보자.
+
                             }
 
                         }
