@@ -5,7 +5,11 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.keepthetime_weekend_20220312.databinding.ActivityEditStartingPointBinding
+import com.example.keepthetime_weekend_20220312.datas.BasicResponse
 import com.naver.maps.map.overlay.Marker
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class EditStartingPointActivity : BaseActivity() {
 
@@ -49,6 +53,31 @@ class EditStartingPointActivity : BaseActivity() {
             val startLng = pointMarker!!.position.longitude
 
             val isPrimary = binding.primaryCheckBox.isChecked
+
+            apiList.postRequestAddStartingPoint(
+                inputName,
+                startLat,
+                startLng,
+                isPrimary
+            ).enqueue(object : Callback<BasicResponse> {
+                override fun onResponse(
+                    call: Call<BasicResponse>,
+                    response: Response<BasicResponse>
+                ) {
+
+                    if (response.isSuccessful) {
+                        Toast.makeText(mContext, "출발지 등록에 성공했습니다.", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
+
+                }
+
+                override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+                }
+
+
+            })
 
         }
 
