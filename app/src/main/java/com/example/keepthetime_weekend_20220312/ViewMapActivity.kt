@@ -106,6 +106,16 @@ class ViewMapActivity : BaseActivity() {
                         val payment = infoObj.getInt("payment")
 
 //                        infoWindow (네이버 지도 기능)에 활용 + 로직 활용
+                        val infoWindow = InfoWindow()
+
+                        infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(mContext) {
+                            override fun getText(p0: InfoWindow): CharSequence {
+                                return "이동시간 : ${totalTime}분, 소요비용 : ${payment}원"
+                            }
+
+                        }
+
+                        infoWindow.open(marker)
 
 
 
