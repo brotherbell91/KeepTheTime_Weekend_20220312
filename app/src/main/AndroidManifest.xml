@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KeepTheTime_Weekend_20220312">
         <activity
+            android:name=".EditStartingPointActivity"
+            android:exported="false" />
+        <activity
             android:name=".ManageStartingPointActivity"
             android:exported="false" />
         <activity

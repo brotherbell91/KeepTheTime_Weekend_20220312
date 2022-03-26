@@ -1,7 +1,9 @@
 package com.example.keepthetime_weekend_20220312
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.keepthetime_weekend_20220312.adapters.StartingPointRecyclerAdapter
@@ -29,11 +31,20 @@ class ManageStartingPointActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+        imgAdd.setOnClickListener {
+
+            val myIntent = Intent(mContext, EditAppointmentActivity::class.java)
+            startActivity(myIntent)
+
+        }
+
     }
 
     override fun setValues() {
 
         txtTitle.text = "출발지 목록 관리"
+
+        imgAdd.visibility = View.VISIBLE
 
         getMyStartingPointFromServer()
 
