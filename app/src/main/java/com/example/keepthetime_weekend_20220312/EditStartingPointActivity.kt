@@ -36,6 +36,20 @@ class EditStartingPointActivity : BaseActivity() {
 
             }
 
+//            마커가 지도에 없다면? 아직 위치 선택 X
+
+            if (pointMarker == null) {
+                Toast.makeText(mContext, "지도에서 출발지 위치를 선택해주세요.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+//            실제 보내줄 데이터 정리.
+
+            val startLat = pointMarker!!.position.latitude  // 네이버지도에 클릭된 마커의 좌표중, 위도
+            val startLng = pointMarker!!.position.longitude
+
+            val isPrimary = binding.primaryCheckBox.isChecked
+
         }
 
     }
