@@ -3,7 +3,9 @@ package com.example.keepthetime_weekend_20220312
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import com.example.keepthetime_weekend_20220312.databinding.ActivityViewMapBinding
 import com.example.keepthetime_weekend_20220312.datas.AppointmentData
@@ -15,6 +17,8 @@ import com.odsay.odsayandroidsdk.API
 import com.odsay.odsayandroidsdk.ODsayData
 import com.odsay.odsayandroidsdk.ODsayService
 import com.odsay.odsayandroidsdk.OnResultCallbackListener
+import java.text.NumberFormat
+import java.util.*
 
 //도전 과제
 //네이버 지도를 화면 가득 띄우기. (라이브러리는 이미 설치 됨)
@@ -115,6 +119,20 @@ class ViewMapActivity : BaseActivity() {
 
 //                                리스트뷰의 getView 함수와 비슷한 구조 (return 타입 View)
 //                                LayoutInflater로 xml을 객체로 가져와서 => 리턴해보자.
+
+                                val view = LayoutInflater.from(mContext).inflate(R.layout.place_info_window_content, null)
+
+//                                view 변수 안에서, id를 가지고 태그들을 찾아서 (findViewById) => 변수에 저장.
+
+                                val txtPlaceName = view.findViewById<TextView>(R.id.txtPlaceName)
+                                val txtTotalTime = view.findViewById<TextView>(R.id.txtTotalTime)
+                                val txtPayment = view.findViewById<TextView>(R.id.txtPayment)
+
+                                txtPlaceName.text = mAppointmentData.place
+                                txtTotalTime.text = "${totalTime}분"
+                                txtPayment.text = "${ NumberFormat.getNumberInstance(Locale.KOREA).format(payment) }원"
+
+                                return view
 
                             }
 
