@@ -13,6 +13,7 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.overlay.PathOverlay
 import com.odsay.odsayandroidsdk.API
 import com.odsay.odsayandroidsdk.ODsayData
@@ -67,10 +68,18 @@ class ViewMapActivity : BaseActivity() {
             val cameraUpdate = CameraUpdate.scrollTo( latLng )
 
             naverMap.moveCamera( cameraUpdate )
-
+//            도착지 마커 찍기 (약속 장소)
             val marker = Marker()
             marker.position = latLng
             marker.map = naverMap
+
+//            출발지 마커 찍기 + 다른 마커 활용
+            val startMarker = Marker()
+            startMarker.position =  LatLng(  mAppointmentData.start_latitude, mAppointmentData.start_longitude  )
+
+            startMarker.icon = OverlayImage.fromResource(R.drawable.start_marker)
+
+            startMarker.map = naverMap
 
 //            대중교통 길찾기 라이브러리 활용 => 소요 시간 + 비용 정보창 띄우기.
 
