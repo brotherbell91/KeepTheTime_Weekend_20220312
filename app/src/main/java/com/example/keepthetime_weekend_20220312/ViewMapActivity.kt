@@ -107,7 +107,6 @@ class ViewMapActivity : BaseActivity() {
 
 //                        infoWindow (네이버 지도 기능)에 활용 + 로직 활용
 
-                    }
 
 
                     }
