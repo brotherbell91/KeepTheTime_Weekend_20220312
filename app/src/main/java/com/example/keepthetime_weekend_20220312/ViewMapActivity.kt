@@ -173,6 +173,15 @@ class ViewMapActivity : BaseActivity() {
                                 val passStopListObj = subPathObj.getJSONObject("passStopList")
                                 Log.d("정거장목록", passStopListObj.toString())
 
+//                                정거장 목록의 위도/경도 추출 => pathPoints ArrayList에 좌표 추가.
+
+                                val stationsArr = passStopListObj.getJSONArray("stations")
+
+                                for (j in  0 until stationsArr.length()) {
+                                    val stationObj = stationsArr.getJSONObject(j)
+                                    Log.d("정거장내역", stationObj.toString())
+                                }
+
                             }
 
                         }
