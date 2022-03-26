@@ -151,6 +151,20 @@ class ViewMapActivity : BaseActivity() {
                         val startLatLng = LatLng( mAppointmentData.start_latitude,  mAppointmentData.start_longitude )
                         pathPoints.add( startLatLng )
 
+//                        출발/도착지 사이에, 대중교통의 정거장 좌표들을 전부 추가. => 대중교통 길찾기 API의 또 다른 영역 파싱.
+//                        첫번째 경로의 => 이동 경로 세부 목록 파싱
+
+                        val subPathArr = firstPathObj.getJSONArray("subPath")
+
+//                        subPathArr에 들어있는 내용물의 갯수직전까지 반복. (ex. 5개 들어있다 : 0,1,2,3,4번째 추출)
+                        for ( i  in  0 until subPathArr.length() ) {
+
+                            Log.d("i변수값", i.toString())
+
+                        }
+
+
+
 //                        도착지 마지막에 추가
                         pathPoints.add( latLng )  // 지도 로딩 초반부에 만든 변수 재활용
 
