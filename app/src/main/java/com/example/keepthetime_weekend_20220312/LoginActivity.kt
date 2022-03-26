@@ -11,6 +11,7 @@ import com.example.keepthetime_weekend_20220312.api.ServerAPI
 import com.example.keepthetime_weekend_20220312.databinding.ActivityLoginBinding
 import com.example.keepthetime_weekend_20220312.datas.BasicResponse
 import com.example.keepthetime_weekend_20220312.utils.ContextUtil
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -80,6 +81,16 @@ class LoginActivity : BaseActivity() {
                         startActivity(myIntent)
                         finish()
 
+                    }
+                    else {
+//                        로그인에 성공 아닌 경우. (비번 틀림, 아이디 틀림 등등..)
+//                        BasicResponse 변환 X. => JSONObject로 받아내서 직접 파싱.
+
+                        val jsonObj = JSONObject(  response.errorBody()!!.string()  ) // .toString() 아님!!
+
+                        val message = jsonObj.getString("message")
+
+                        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
                     }
                 }
 
