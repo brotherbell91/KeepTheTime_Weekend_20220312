@@ -39,6 +39,12 @@ class EditAppointmentActivity : BaseActivity() {
     //    로딩이 완료된 네이버맵을 담을 변수.
     var mNaverMap : NaverMap? = null // 처음에는 지도도 불러지지 않은 상태.
 
+    //    선택한 출발지 자체를 저장할 변수
+    var mSelectedStartPoint : StartingPointData? = null // 처음에는 출발지선택 X.
+
+    //    출발지를 띄워줄 마커.
+    var mStartMarker: Marker? = null
+
     //    지도에 띄워줄 목적지 표시 마커.
     var myMarker : Marker? = null  // 처음에는 목적지 마커도 없는 상태.
 
@@ -61,7 +67,7 @@ class EditAppointmentActivity : BaseActivity() {
         binding.startingPointSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
 
-                val selectedStartingPoint = mStartingPointList[position]
+                mSelectedStartPoint = mStartingPointList[position]
 
 //                선택한 출발지 > 지도의 빨간 마커 위치 이동. > naverMap변수를 받아내야 사용 가능.
 
@@ -282,12 +288,19 @@ class EditAppointmentActivity : BaseActivity() {
     fun setStartAndEndToNaverMap() {
 
 //        혹시 지도가 안불러졌는지? 밑의 코드 실행 X. (안정성 보강)
+//        스피너 이벤트처리 때문에, 지도로딩보다 먼저 실행되었는가?
+
         if (mNaverMap == null) {
             return
         }
 
 //            mNaverMap은 null 아니다.
         val naverMap = mNaverMap!!
+
+        //        출발지가 선택되지 않았는지?
+        if (mSelectedStartPoint == null) {
+            return
+        }
 
 //            기본 지도의 시작 화면 : 서울시청. => 네이버지도의 시작 좌표 : 넵플러스 학원
 
