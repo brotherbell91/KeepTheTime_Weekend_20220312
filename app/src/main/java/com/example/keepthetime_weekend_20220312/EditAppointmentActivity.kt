@@ -388,6 +388,24 @@ class EditAppointmentActivity : BaseActivity() {
             object : OnResultCallbackListener {
                 override fun onSuccess(p0: ODsayData?, p1: API?) {
 
+                    val jsonObj = p0!!.json
+
+                    val resultObj = jsonObj.getJSONObject("result")
+
+                    val pathArr = resultObj.getJSONArray("path")
+
+                    val firstPathObj = pathArr.getJSONObject(0)
+
+//                    정보 항목 추출 > InfoWindow 띄우기 (도착지의 마커에 띄우기)
+
+                    val infoObj = firstPathObj.getJSONObject("info")
+
+//                    실제 데이터들은 Obj / Arr 등의 이름을 덧붙이지 않음. (강사 개인 취향)
+                    val totalTime = infoObj.getInt("totalTime")
+                    val payment = infoObj.getInt("payment")
+
+//                    네이버 지도의 정보창 기능에 연동.
+
                 }
 
                 override fun onError(p0: Int, p1: String?, p2: API?) {
