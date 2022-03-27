@@ -33,7 +33,7 @@ class ManageStartingPointActivity : BaseActivity() {
 
         imgAdd.setOnClickListener {
 
-            val myIntent = Intent(mContext, EditAppointmentActivity::class.java)
+            val myIntent = Intent(mContext, EditStartingPointActivity::class.java)
             startActivity(myIntent)
 
         }
@@ -46,11 +46,16 @@ class ManageStartingPointActivity : BaseActivity() {
 
         imgAdd.visibility = View.VISIBLE
 
-        getMyStartingPointFromServer()
-
         mAdapter = StartingPointRecyclerAdapter( mContext, mStartingPointList )
         binding.myStartingPointRecyclerView.adapter = mAdapter
         binding.myStartingPointRecyclerView.layoutManager = LinearLayoutManager(mContext)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        getMyStartingPointFromServer()
 
     }
 
@@ -58,6 +63,8 @@ class ManageStartingPointActivity : BaseActivity() {
 
         apiList.getRequestMyStartingPoint().enqueue( object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+
+                mStartingPointList.clear()
 
                 val br = response.body()!!  // JSONObject / JSONArray 등의 중간 형태 skip. 바로 일반 클래스로 담아줌.
 

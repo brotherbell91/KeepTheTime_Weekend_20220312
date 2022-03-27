@@ -35,7 +35,7 @@ class MainActivity : BaseActivity() {
     override fun setupEvents() {
 
 //        상속받아온 imgAdd의 이벤트 처리.
-        imgadd.setOnClickListener {
+        imgAdd.setOnClickListener {
 
             val myIntent = Intent(mContext, EditAppointmentActivity::class.java)
             startActivity(myIntent)
@@ -49,12 +49,12 @@ class MainActivity : BaseActivity() {
 
             binding.mainViewPager2.currentItem = when ( it.itemId) {
                 R.id.home -> {
-                    imgadd.visibility = View.VISIBLE
+                    imgAdd.visibility = View.VISIBLE
                     0
                 }
                 else ->
                 {
-                    imgadd.visibility = View.GONE
+                    imgAdd.visibility = View.GONE
                     1
                 }
 
@@ -94,7 +94,7 @@ class MainActivity : BaseActivity() {
 
         imgBack.visibility = View.GONE
 
-        imgadd.visibility = View.VISIBLE
+        imgAdd.visibility = View.VISIBLE
 
 
     }
