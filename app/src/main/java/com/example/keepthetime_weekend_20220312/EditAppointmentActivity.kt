@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.keepthetime_weekend_20220312.api.APIList
 import com.example.keepthetime_weekend_20220312.databinding.ActivityEditAppointmentBinding
 import com.example.keepthetime_weekend_20220312.datas.BasicResponse
+import com.example.keepthetime_weekend_20220312.datas.StartingPointData
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.overlay.InfoWindow
@@ -34,6 +35,9 @@ class EditAppointmentActivity : BaseActivity() {
 
 //    지도에 띄워줄 목적지 표시 마커
     var myMarker : Marker? = null // 처음에는 목적지 마커도 없는 상태
+
+//    내가 만들어둔 출발지 목록 List
+    val mStartingPointList = ArrayList<StartingPointData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -240,5 +244,25 @@ class EditAppointmentActivity : BaseActivity() {
 
         }
 
+        getMyStartingPointFromServer()
+
+    }
+//    내 출발지 목록이 어떤것들이 있는지 불러보기.
+
+    fun getMyStartingPointFromServer() {
+
+        apiList.getRequestMyStartingPoint().enqueue(object : Callback<BasicResponse>{
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+
+                val br = response.body()!!
+
+                mStartingPointList.addAll( br.data.places )
+
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+            }
+        })
     }
 }
