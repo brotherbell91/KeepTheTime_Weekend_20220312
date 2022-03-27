@@ -263,6 +263,8 @@ class EditAppointmentActivity : BaseActivity() {
 
                 mStartingPointList.addAll( br.data.places )
 
+                mStartingPointSpinnerAdapter.notifyDataSetChanged()
+
             }
 
             override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
