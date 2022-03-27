@@ -52,6 +52,52 @@
             android:layout_height="wrap_content"
             android:text="회원가입" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="소셜 로그인" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgKakao"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/kakao_logo"
+                    app:civ_border_width="2dp"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgFacebook"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/facebook_logo"
+                    app:civ_border_width="2dp"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgNaver"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/naver_logo"
+                    app:civ_border_width="2dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
 
 
 
