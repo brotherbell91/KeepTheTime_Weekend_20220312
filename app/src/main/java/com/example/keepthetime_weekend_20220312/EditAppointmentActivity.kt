@@ -45,6 +45,9 @@ class EditAppointmentActivity : BaseActivity() {
     //    출발지를 띄워줄 마커.
     var mStartMarker: Marker? = null  // 하나의 마커만 만들어서, 출발지를 변경할때마다 위치만 변경되게.
 
+    //    지도에서 클릭한 목적지 좌표.
+    var mAppointmentLatLng : LatLng? = null // 지도에서 클릭한 좌표. 처음에는 아직 없다.
+
     //    지도에 띄워줄 목적지 표시 마커.
     var myMarker : Marker? = null  // 처음에는 목적지 마커도 없는 상태.
 
@@ -274,6 +277,21 @@ class EditAppointmentActivity : BaseActivity() {
 //            불러진 지도를 멤버변수에 저장.
             mNaverMap = it
 
+
+//            네이버 지도의 클릭 이벤트
+
+            mNaverMap!!.setOnMapClickListener { pointF, latLng ->
+
+//                클릭된 좌표는, 목적지로 설정됨.
+//                목적지를 멤버변수로 만들어서 => latLng를 그 목적지로 설정.
+                mAppointmentLatLng = latLng
+
+//                출발/도착지 그림을 그려주는 함수 재실행.
+                setStartAndEndToNaverMap()
+
+
+            }
+
 //            지도가 불러지고 나서, 출발/도착지 새로 그리기
             setStartAndEndToNaverMap()
 
@@ -304,7 +322,7 @@ class EditAppointmentActivity : BaseActivity() {
             return
         }
 
-//            기본 지도의 시작 화면 : 서울시청. => 네이버지도의 시작 좌표 : 선택한 출발지 좌표
+//            기본 지도의 시작 화면 : 서울시청. => 네이버지도의 시작 좌표 : 선택한 도착지 좌표
 
 //        출발지 좌표 변수
         val startLatLng = LatLng(  mSelectedStartPoint!!.latitude, mSelectedStartPoint!!.longitude )
@@ -331,31 +349,27 @@ class EditAppointmentActivity : BaseActivity() {
         mStartMarker!!.width = 50
         mStartMarker!!.height = 80
 
-//            네이버 지도의 클릭 이벤트
 
-        naverMap.setOnMapClickListener { pointF, latLng ->
-
-//                클릭된 좌표 latLng 변수의 내용을 토스트로 출력
-//                Toast.makeText(
-//                    mContext,
-//                    "위도 : ${latLng.latitude}, 경도 : ${latLng.longitude}",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-
-//                마커를 클릭된 지점에 설정.
-
-//                myMarker가 만들어진게 없다면, 새로 마커 생성.
-//                만들어진게 있다면, 기존 마커 재활용.
-
-            if (myMarker == null) {
-                myMarker = Marker()
-            }
-
-            myMarker!!.position = latLng  // 클릭된 지점 자체를 위치로 설정.
-            myMarker!!.map = naverMap
-
-
+//        출발지 세팅이 끝나면, 도착지도 있는지 검사.
+//        도착지가 있어야 도착 관련 정보도 그려주자.
+        if (mAppointmentLatLng == null) {
+            return
         }
+
+//        카메라도, 도착지로 다시 옮기자.
+        val cameraUpdate2 = CameraUpdate.scrollTo(mAppointmentLatLng!!)
+        naverMap.moveCamera(cameraUpdate2)
+
+//        도착지 마커도 없으면 생성
+        if (myMarker == null) {
+            myMarker = Marker()
+        }
+
+//        위치 이동
+        myMarker!!.position = mAppointmentLatLng!!
+        myMarker!!.map = naverMap
+
+
 
 
     }
