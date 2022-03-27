@@ -43,7 +43,7 @@ class EditAppointmentActivity : BaseActivity() {
     var mSelectedStartPoint : StartingPointData? = null // 처음에는 출발지선택 X.
 
     //    출발지를 띄워줄 마커.
-    var mStartMarker: Marker? = null
+    var mStartMarker: Marker? = null  // 하나의 마커만 만들어서, 출발지를 변경할때마다 위치만 변경되게.
 
     //    지도에 띄워줄 목적지 표시 마커.
     var myMarker : Marker? = null  // 처음에는 목적지 마커도 없는 상태.
@@ -292,7 +292,6 @@ class EditAppointmentActivity : BaseActivity() {
 
 //        혹시 지도가 안불러졌는지? 밑의 코드 실행 X. (안정성 보강)
 //        스피너 이벤트처리 때문에, 지도로딩보다 먼저 실행되었는가?
-
         if (mNaverMap == null) {
             return
         }
@@ -300,30 +299,37 @@ class EditAppointmentActivity : BaseActivity() {
 //            mNaverMap은 null 아니다.
         val naverMap = mNaverMap!!
 
-        //        출발지가 선택되지 않았는지?
+//        출발지가 선택되지 않았는지?
         if (mSelectedStartPoint == null) {
             return
         }
 
-//            기본 지도의 시작 화면 : 서울시청. => 네이버지도의 시작 좌표 : 넵플러스 학원
+//            기본 지도의 시작 화면 : 서울시청. => 네이버지도의 시작 좌표 : 선택한 출발지 좌표
 
-        val cameraUpdate =  CameraUpdate.scrollTo( LatLng( 37.577927550342345, 127.03360311276816 ) )
+//        출발지 좌표 변수
+        val startLatLng = LatLng(  mSelectedStartPoint!!.latitude, mSelectedStartPoint!!.longitude )
+
+        val cameraUpdate =  CameraUpdate.scrollTo( startLatLng )
         naverMap.moveCamera( cameraUpdate )
 
-//            넵플러스 학원 위치에, 마커를 띄워보자.
+//            출발지 위치에 마커를 찍자.
+//        아직 마커가 없을때만 생성.
 
-        val marker = Marker()
-        marker.position =  LatLng(37.577927550342345, 127.03360311276816)
-        marker.map = naverMap
+        if (mStartMarker == null) {
+            mStartMarker = Marker()
+        }
+
+        mStartMarker!!.position = startLatLng
+        mStartMarker!!.map = naverMap
 
 //            마커 색상 변경
-        marker.icon = MarkerIcons.BLACK // 이 위에 원하는 색 커스텀
-        marker.iconTintColor = Color.parseColor("#FF0000") // 안드로이드가 주는 색
+        mStartMarker!!.icon = MarkerIcons.BLACK // 이 위에 원하는 색 커스텀
+        mStartMarker!!.iconTintColor = Color.parseColor("#FF0000") // 안드로이드가 주는 색
 
 //            마커 크기 변경
 
-        marker.width = 50
-        marker.height = 80
+        mStartMarker!!.width = 50
+        mStartMarker!!.height = 80
 
 //            네이버 지도의 클릭 이벤트
 
