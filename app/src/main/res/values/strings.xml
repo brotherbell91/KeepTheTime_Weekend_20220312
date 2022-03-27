@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">약속지킴</string>
+
+    <string name="facebook_app_id">532402174976790</string>
+    <string name="fb_login_protocol_scheme">fb532402174976790</string>
+    <string name="facebook_client_token">632758bbf445aac7627aefe423b1a8d6</string>
 </resources>
