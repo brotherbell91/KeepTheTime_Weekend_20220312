@@ -10,6 +10,7 @@ import android.util.Base64
 import android.util.Log
 import com.example.keepthetime_weekend_20220312.datas.BasicResponse
 import com.example.keepthetime_weekend_20220312.utils.ContextUtil
+import com.google.firebase.messaging.FirebaseMessaging
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,6 +31,7 @@ class SplashActivity : BaseActivity() {
     override fun setValues() {
 
         getKeyHash()
+        getFCMToken()
 
 //        API로, 토큰값을 이용해 내 정보 조회
 
@@ -94,4 +96,14 @@ class SplashActivity : BaseActivity() {
         }
     }
 
+//    FCM 토큰값 추출 함수
+
+    fun getFCMToken(){
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+
+            Log.d("등록된토큰", it.result!!)
+
+        }
+
+    }
 }
