@@ -150,49 +150,56 @@ class LoginActivity : BaseActivity() {
 //    카톡 앱이건, 다른 방식이건 카카오 로그인이 되었다면 실행할 함수.
 //    로그인한 사용자의 고유정보 받아오기
 
-    fun getKakaoUserInfo(){
+    fun getKakaoUserInfo() {
 
         UserApiClient.instance.me { user, error ->
 
-
 //            retrofit 처럼, 카카오가 변수에 모든것을 담아서 내려주는 형태.
-            Log.d("카카오로그인", "사용자 id값 : ${user!!.id}")
-            Log.d("카카오로그인", "사용자 id값 : ${user!!.kakaoAccount!!.profile!!.nickname}")
+            Log.d("카카오로그인", "사용자 id값: ${user!!.id}")
+            Log.d("카카오로그인", "사용자 닉네임: ${user!!.kakaoAccount!!.profile!!.nickname}")
 
-//            우리 API서버에 소셜로그인 API 호출 => 성공시 로그인 처리
+//            우리 API서버에 소셜로그인 API 호출. => 성공시 로그인 처리.
 
             apiList.postRequestSocialLogin(
                 "kakao",
                 user!!.id.toString(),
                 user!!.kakaoAccount!!.profile!!.nickname!!,
-            ).enqueue(object :Callback<BasicResponse>{
+            ).enqueue(object : Callback<BasicResponse> {
                 override fun onResponse(
                     call: Call<BasicResponse>,
                     response: Response<BasicResponse>
                 ) {
 
-                    if (response.isSuccessful){
+                    if (response.isSuccessful) {
 
                         val br = response.body()!!
 
-                        Toast.makeText(mContext, "${br.data.user.nick_name}님 환영합니다!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            mContext,
+                            "${br.data.user.nick_name}님 환영합니다!",
+                            Toast.LENGTH_SHORT
+                        ).show()
 
-                        ContextUtil.setToken(mContext, br.data.token)
+                        ContextUtil.setToken(mContext, br.data.token )
 
                         val myIntent = Intent(mContext, MainActivity::class.java)
                         startActivity(myIntent)
 
                         finish()
 
+                    }
+
                 }
 
                 override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
 
                 }
+
+
             })
 
-            }
         }
 
     }
+
 }
