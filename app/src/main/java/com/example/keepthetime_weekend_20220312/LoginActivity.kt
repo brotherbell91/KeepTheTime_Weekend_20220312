@@ -171,6 +171,19 @@ class LoginActivity : BaseActivity() {
                     response: Response<BasicResponse>
                 ) {
 
+                    if (response.isSuccessful){
+
+                        val br = response.body()!!
+
+                        Toast.makeText(mContext, "${br.data.user.nick_name}님 환영합니다!", Toast.LENGTH_SHORT).show()
+
+                        ContextUtil.setToken(mContext, br.data.token)
+
+                        val myIntent = Intent(mContext, MainActivity::class.java)
+                        startActivity(myIntent)
+
+                        finish()
+
                 }
 
                 override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
