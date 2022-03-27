@@ -11,6 +11,7 @@ import com.example.keepthetime_weekend_20220312.api.ServerAPI
 import com.example.keepthetime_weekend_20220312.databinding.ActivityLoginBinding
 import com.example.keepthetime_weekend_20220312.datas.BasicResponse
 import com.example.keepthetime_weekend_20220312.utils.ContextUtil
+import com.kakao.sdk.user.UserApiClient
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,7 +31,26 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setupEvents(){
-//      OnCheckedChange 중괄호 있는것 선택
+
+//        카톡 로고가 눌리면 > 카카오 로그인.
+        binding.imgKakao.setOnClickListener {
+
+//            카톡 앱이 깔려있으면? 앱으로 로그인, 아니면? 별도로 로그인
+            
+            if(UserApiClient.instance.isKakaoTalkLoginAvailable(mContext)){
+
+                Log.d("카톡로그인", "앱으로 로그인 가능")
+
+            }
+            else{
+
+                Log.d("카톡로그인", "앱으로 로그인 불가 - 별도 로그인 필요")
+                
+            }
+
+        }
+
+//     OnCheckedChange 중괄호 있는것 선택
         binding.autoLoginCheckBox.setOnCheckedChangeListener { compoundButton, isChecked ->
 
 //            isChecked변수에, 지금 체크 되었는지? 해제되었는지? 알려줌.
