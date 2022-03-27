@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "135452948467",
+    "project_id": "keepthetime-weekend-20220312",
+    "storage_bucket": "keepthetime-weekend-20220312.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:135452948467:android:19ed36c627ae3bee160486",
+        "android_client_info": {
+          "package_name": "com.example.keepthetime_weekend_20220312"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "135452948467-i834jeaafftbhe6bhf7gubtgjcl69ebv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgIsm0txLS6uAsp6PJlh1L3-f78WgaKK4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "135452948467-i834jeaafftbhe6bhf7gubtgjcl69ebv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
