@@ -54,9 +54,52 @@ class LoginActivity : BaseActivity() {
 //                    1. 내 정보를 받아오면 뭘 할건지 ? 계획 작성
 
                     val graphRequest = GraphRequest.newMeRequest(result!!.accessToken, object : GraphRequest.GraphJSONObjectCallback{
-                        override fun onCompleted(`object`: JSONObject?, response: GraphResponse?) {
-                            TODO("Not yet implemented")
+                        override fun onCompleted(jsonObj: JSONObject?, response: GraphResponse?) {
+
+                            Log.d("페북로그인-내정보", jsonObj!!.toString())
+
+//                            받은 정보에서 id값, 이름 추출
+                            val id = jsonObj.getString("id")
+                            val name = jsonObj.getString("name")
+
+//                            우리 API서버에 소셜 로그인 API 호출.
+
+                            apiList.postRequestSocialLogin(
+                                "facebook",
+                                id,
+                                name
+                            ).enqueue(object : Callback<BasicResponse> {
+                                override fun onResponse(
+                                    call: Call<BasicResponse>,
+                                    response: Response<BasicResponse>
+                                ) {
+                                    if (response.isSuccessful) {
+
+                                        val br = response.body()!!
+
+                                        Toast.makeText(
+                                            mContext,
+                                            "${br.data.user.nick_name}님, 페북 로그인을 환영합니다!",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+
+                                        ContextUtil.setToken(mContext, br.data.token)
+
+                                        val myIntent = Intent(mContext, MainActivity::class.java)
+                                        startActivity(myIntent)
+                                        finish()
+
+                                    }
+                                }
+
+                                override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+                                }
+
+                            })
+
                         }
+
                     })
                     
 //                    2. 실제 내 정보 받아오기 실행
