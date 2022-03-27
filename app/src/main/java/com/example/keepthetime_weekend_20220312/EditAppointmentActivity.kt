@@ -53,6 +53,17 @@ class EditAppointmentActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+//        지도 / 스크롤뷰의 상하 스크롤이 겹쳐서 지도에 문제 발생.
+//        해결책 : 지도 위에 텍스트뷰를 덮어두고, 해당 텍스트뷰에 손이 닿으면(touch) => 스크롤뷰의 스크롤을 일시정지.
+        binding.txtScrollHelp.setOnTouchListener { view, motionEvent ->
+
+            binding.scrollView.requestDisallowInterceptTouchEvent(true)
+
+//            리턴 처리 필요 : 소닝 닿아도 밑에 깔린 지도의 이벤트도 실행.
+            return@setOnTouchListener false
+
+        }
+
         binding.txtDate.setOnClickListener {
 
 //            날짜가 선택되면 할 일 저장

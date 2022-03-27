@@ -10,6 +10,7 @@
         tools:context=".EditAppointmentActivity">
 
         <ScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -97,10 +98,21 @@
 
                 <!--  네이버 지도를 배치해서, 클릭한 좌표를 추출해서 사용.  -->
 
-                <com.naver.maps.map.MapView
-                    android:id="@+id/mapView"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="250dp" />
+                    android:layout_height="wrap_content">
+
+                    <com.naver.maps.map.MapView
+                        android:id="@+id/mapView"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp" />
+
+                    <TextView
+                        android:id="@+id/txtScrollHelp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </FrameLayout>
 
                 <Button
                     android:id="@+id/btnSave"
