@@ -11,6 +11,7 @@ import com.example.keepthetime_weekend_20220312.api.ServerAPI
 import com.example.keepthetime_weekend_20220312.databinding.ActivityLoginBinding
 import com.example.keepthetime_weekend_20220312.datas.BasicResponse
 import com.example.keepthetime_weekend_20220312.utils.ContextUtil
+import com.facebook.CallbackManager
 import com.kakao.sdk.user.UserApiClient
 import org.json.JSONObject
 import retrofit2.Call
@@ -22,6 +23,9 @@ class LoginActivity : BaseActivity() {
 //    binding : 어떤 xml을 접근하는지. 자료형으로 설정.
     lateinit var binding : ActivityLoginBinding
 
+    //    페북 로그인 화면에 다녀오면, 할 일을 관리해주는 변수.
+    lateinit var mCallbackManager : CallbackManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_login)
@@ -31,6 +35,13 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setupEvents(){
+
+        //        페북 로고가 눌리면 > 페이스북 로그인.
+        binding.imgFacebook.setOnClickListener {
+
+//            페북로그인 기능에 관련된 코드 준비가 필요함. (준비 먼저 하고 로그인 실행)
+
+        }
 
 //        카톡 로고가 눌리면 > 카카오 로그인.
         binding.imgKakao.setOnClickListener {
@@ -142,9 +153,19 @@ class LoginActivity : BaseActivity() {
 
     override fun setValues(){
 
+        //        페북로그인 - 콜백 관리 기능 초기화.
+        mCallbackManager = CallbackManager.Factory.create()
+
 //        저장해둔 자동로그인 여부를, 체크박스의 isChecked 속성에 대입.
         binding.autoLoginCheckBox.isChecked = ContextUtil.getAutoLogin(mContext)
 
+    }
+
+    //    페북로그인 화면에 다녀오면, 콜백매니저가 처리하도록.
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        mCallbackManager.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
 //    카톡 앱이건, 다른 방식이건 카카오 로그인이 되었다면 실행할 함수.
