@@ -70,6 +70,9 @@ class EditAppointmentActivity : BaseActivity() {
                 mSelectedStartPoint = mStartingPointList[position]
 
 //                선택한 출발지 > 지도의 빨간 마커 위치 이동. > naverMap변수를 받아내야 사용 가능.
+//                출발/도착지 다시 그리기. 분리해둔 호출.
+
+                setStartAndEndToNaverMap()  // 지도 로딩보다 먼저 실행된다면?
 
             }
 
