@@ -34,7 +34,7 @@ class StartingPointSpinnerAdapter(
         txtStartingPointName.text = data.name
 
         if (data.is_primary) {
-            txtPrimary.visibility = View.GONE
+            txtPrimary.visibility = View.VISIBLE
         }
         else {
             txtPrimary.visibility = View.GONE
@@ -61,7 +61,7 @@ class StartingPointSpinnerAdapter(
         txtStartingPointName.text = data.name
 
         if (data.is_primary) {
-            txtPrimary.visibility = View.GONE
+            txtPrimary.visibility = View.VISIBLE
         }
         else {
             txtPrimary.visibility = View.GONE
