@@ -61,5 +61,5 @@ dependencies {
 
     implementation "com.kakao.sdk:v2-user:2.9.0" // 카카오 로그인
 
-    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+    implementation 'com.facebook.android:facebook-login:8.1.0' //페북 로그인 전용 라이브러리 (구버젼 테스트)
 }
