@@ -376,10 +376,11 @@ class EditAppointmentActivity : BaseActivity() {
         myMarker!!.position = mAppointmentLatLng!!
         myMarker!!.map = naverMap
 
+
 //        출발지 / 도착지가 모두 반영되는 구조 완성.
 //        길찾기 API 호출 => 결과 분석, 화면에 추가 반영. (선 긋기 / 정보 표시)
 
-        val odSay = ODsayService.init(mContext, "hvTDdqC5yX4rd5jJykB8m9mL78tTFR64I3ExPwteLxk+RS7nNQ7RToDs9FjME")
+        val odSay = ODsayService.init(mContext, "hvTDdqC5yX4rd5jJykB8m9mL78tTFR64I3ExPwteLxk")
         odSay.requestSearchPubTransPath(
             mSelectedStartPoint!!.longitude.toString(),
             mSelectedStartPoint!!.latitude.toString(),
@@ -434,6 +435,7 @@ class EditAppointmentActivity : BaseActivity() {
 
                     infoWindow.open(myMarker!!) // 도착지 마커에 정보창 띄우기
 
+
 //                    경로선 자체 생성, 첫 좌표는 출발지.
 
                     if (mPath == null) {
@@ -443,6 +445,7 @@ class EditAppointmentActivity : BaseActivity() {
                     val pathCoordList = ArrayList<LatLng>()
 
                     pathCoordList.add( startLatLng )
+
 
 //                    첫번째 경로의 > 세부 경로 파싱 > 경로선 기능으로 그려주기. (정거장 좌표 목록을 경로선 좌표목록에 추가)
 
@@ -476,8 +479,9 @@ class EditAppointmentActivity : BaseActivity() {
 
                     }
 
-                    //                    마지막으로 목적지 좌표 추가.
+//                    마지막으로 목적지 좌표 추가.
                     pathCoordList.add( mAppointmentLatLng!! )
+
 
 //                    모든 좌표가 추가되었으니, 지도에 나오도록
                     mPath!!.coords = pathCoordList
@@ -491,8 +495,6 @@ class EditAppointmentActivity : BaseActivity() {
 
             }
         )
-
-
 
     }
 
