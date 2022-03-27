@@ -152,6 +152,34 @@ class LoginActivity : BaseActivity() {
 
     fun getKakaoUserInfo(){
 
+        UserApiClient.instance.me { user, error ->
+
+
+//            retrofit 처럼, 카카오가 변수에 모든것을 담아서 내려주는 형태.
+            Log.d("카카오로그인", "사용자 id값 : ${user!!.id}")
+            Log.d("카카오로그인", "사용자 id값 : ${user!!.kakaoAccount!!.profile!!.nickname}")
+
+//            우리 API서버에 소셜로그인 API 호출 => 성공시 로그인 처리
+
+            apiList.postRequestSocialLogin(
+                "kakao",
+                user!!.id.toString(),
+                user!!.kakaoAccount!!.profile!!.nickname!!,
+            ).enqueue(object :Callback<BasicResponse>{
+                override fun onResponse(
+                    call: Call<BasicResponse>,
+                    response: Response<BasicResponse>
+                ) {
+
+                }
+
+                override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+                }
+            })
+
+            }
+        }
 
     }
 }
