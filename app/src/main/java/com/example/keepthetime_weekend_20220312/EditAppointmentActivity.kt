@@ -170,11 +170,21 @@ class EditAppointmentActivity : BaseActivity() {
             val lat = myMarker!!.position.latitude //찍힌 마커의 위도 추출.
             val lng = myMarker!!.position.longitude //찍힌 마커의 경도 추출.
 
+//            출발지 목록 Spinner에서, 어떤 출발지를 선택했는지 받아오자. => 출발지 정보로 서버에 첨부.
+
+//            스피너의 선택 위치 추출
+            val selectedPosition = binding.startingPointSpinner.selectedItemPosition
+//            해당 위치에 맞는 출발지 데이터 가져오기
+            val selectedStartingPoint =  mStartingPointList[selectedPosition]
+
 //            서버에 파라미터값들 전송. (API 호출)
 
             apiList.postRequestAddAppointment(
                 inputTitle,
                 serverDateTimeStr,
+                selectedStartingPoint.name,
+                selectedStartingPoint.latitude,
+                selectedStartingPoint.longitude,
                 inputPlaceName,
                 lat,
                 lng,
