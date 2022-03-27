@@ -1,15 +1,19 @@
 package com.example.keepthetime_weekend_20220312
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Base64
+import android.util.Log
 import com.example.keepthetime_weekend_20220312.datas.BasicResponse
 import com.example.keepthetime_weekend_20220312.utils.ContextUtil
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.security.MessageDigest
 
 class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +28,8 @@ class SplashActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+        getKeyHash()
 
 //        API로, 토큰값을 이용해 내 정보 조회
 
@@ -70,5 +76,21 @@ class SplashActivity : BaseActivity() {
         }, 2500)
 
 
+    }
+
+//    내 앱/컴퓨터의 키 해쉬값 추출 함수
+
+    fun getKeyHash(){
+
+        val info = packageManager.getPackageInfo(
+            "com.example.keepthetime_weekend_20220312",
+            PackageManager.GET_SIGNATURES
+        )
+        for (signature in info.signatures) {
+            val md: MessageDigest = MessageDigest.getInstance("SHA")
+            md.update(signature.toByteArray())
+            Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT))
+
+        }
     }
 }
